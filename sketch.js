@@ -11,8 +11,8 @@ let mapa = [];
 let pantalla = 0;
 let presionado = false;
 
-let enemigo = new Enemigos;
-let arma = new ArmasE;
+let enemigo = new Enemigo;
+let arma = new ArmaE;
 
 let vida = [];
 
@@ -75,7 +75,7 @@ function setup() {
   for (let i = 0; i < 4; i++) {
     let x = (i*76)+40;
     let y = 40;
-    vida.push(new Vidas(x,y));
+    vida.push(new Vida(x,y));
 
     
   }
