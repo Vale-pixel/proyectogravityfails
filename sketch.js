@@ -1,7 +1,7 @@
-let inicial, escogerP, cuarto, tienda, bosque, portal, pag_grande, diario_gran, gameO, winner, dipper, mabel, 
-tiostan, raton, muercie, abuela, abuelo, hombreTauro, gnomo, bill, rosa, hacha, paginas, alfombra, cinta, tronco,
-fuegoazul, fuegorosa, corazon, linterna;
-            
+let inicial, escogerP, cuarto, tienda, bosque, portal, pag_grande, diario_gran, gameO, winner, dipper, mabel,
+  tiostan, raton, muercie, abuela, abuelo, hombreTauro, gnomo, bill, rosa, hacha, paginas, alfombra, cinta, tronco,
+  fuegoazul, fuegorosa, corazon, linterna;
+
 function preload() {
   //pantallas
   inicial = loadImage("/assets/Pantalla inicial-8.png");
