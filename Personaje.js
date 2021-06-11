@@ -1,8 +1,14 @@
-class Personajes{
+class Personaje{
     constructor(){
         this.xpersonaje = xpersonaje;
         this.ypersonaje = ypersonaje;
+        this.personaje = [];
+        this.armaP = [];
+        this.enemigo = [];
+
+
     }
+    
     mostrar(){
         
        
@@ -14,7 +20,6 @@ class Personajes{
             case 'a':
                 this.xpersonaje -= 1;
                 break;
-
             case 'w':
                 this.ypersonaje += 1;
                 break;
@@ -28,7 +33,7 @@ class Personajes{
     }
 
     disparar (){
-
+       // this.armaP.push(new )
 
     }
 
@@ -44,11 +49,9 @@ class Personajes{
 
     }
 
-    again(){}
 
 
 
 
-}
-    
-    
+
+    }

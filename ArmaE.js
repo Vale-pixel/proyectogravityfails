@@ -1,4 +1,4 @@
-class ArmasE {
+class ArmaE {
     constructor(x,y){
     this.x = x;
     this.y = y;

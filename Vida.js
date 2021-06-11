@@ -1,4 +1,4 @@
-class Vidas {
+class Vida {
     constructor(x,y){
     this.x = x;
     this.y = y;
