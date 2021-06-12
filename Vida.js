@@ -5,7 +5,6 @@ class Vida {
 }
 
 mostrar(){
-    
     image(corazon,this.x,this.y);
 }
 

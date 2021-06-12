@@ -2,26 +2,18 @@ let inicial, escogerP, cuarto, tienda, bosque, portal, pag_grande, diario_gran, 
   tiostan, raton, muercie, abuela, abuelo, hombreTauro, gnomo, bill, rosa, hacha, paginas, alfombra, cinta, tronco,
   fuegoazul, fuegorosa, corazon, linterna;
 
-let arregloA = [];
-
-
-
 let pantalla = 0;
 let presionado = false;
 let personaje;
 
-
-let enemigo = new Enemigo(500,50,1);
+let enemigo = new Enemigo(500, 50, 1);
 let arma = new ArmaE;
 
 let vida = [];
 
 let tioStann = false;
 let mabell = false;
-let dipperr = false;
-
-//let libro = new Libro();
-
+let dipperr = false
 
 function preload() {
   //pantallas
@@ -59,55 +51,47 @@ function preload() {
   fuegorosa = loadImage("/assets/0fuegorosa0.png");
   corazon = loadImage("/assets/CorazónVida.png");
   linterna = loadImage("/assets/0linterna0.png");
-
-
 }
+
 function setup() {
   createCanvas(1000, 500);
 
-
-
+  //arreglo vidas
   for (let i = 0; i < 4; i++) {
     let x = (i * 76) + 40;
     let y = 40;
-    vida.push(new Vida(x,y));
+    vida.push(new Vida(x, y));
   }
-personaje = new Personaje();
+  personaje = new Personaje();
 }
 
 function draw() {
 
- 
-
-
+  //pantallas con sus elementos
   switch (pantalla) {
 
     case (0):
-      image(inicial, 0, 0);
-
+      image(inicial, 0, 0); //pantalla inicio
       break;
+
     case (1):
-      image(escogerP, 0, 0);
+      image(escogerP, 0, 0);//pantalla escoger personaje
       stroke(100);
       fill(255);
       textSize(15);
       text("CON UN CLICK", 438, 142)
-
-
       break;
-      
-     
-     
+
     case (2):
-      
-      image(cuarto, 0, 0);
+
+      image(cuarto, 0, 0);//pantalla cuarto dipper y mabel
 
       enemigo.raton();
       fill(0);
       textSize(36);
       text("1", 930, 98);
 
-        //Pintar los personajes dependiendo la elección
+      //Pintar los personajes dependiendo la elección
 
       //Tio Stan
       if (tioStann === true) {
@@ -121,92 +105,145 @@ function draw() {
 
       //Dipper
       if (dipperr === true) {
-          personaje.mostrarDipper();
+        personaje.mostrarDipper();
+      }
+
+      //arreglo de vidas 
+      for (let i = 0; i < vida.length; i++) {
+        vida[i].mostrar();
       }
 
       for (let i = 0; i < vida.length; i++) {
-
         vida[i].mostrar();
-
       }
-        
 
       enemigo.mover();
+      enemigo.rebotar();
 
-      for (let i = 0; i < vida.length; i++) {
-        vida[i].mostrar();
-      }
-  
-        if (enemigo.x <= 0){
+      /*  if (enemigo.x <= 0) {
           console.log("izquierda");
           enemigo.rebotar();
         }
-      
-      
-        if (enemigo.x >= 900){
+  
+  
+        if (enemigo.x >= 900) {
           console.log("derecha");
           enemigo.rebotar();
         }
-
-        if (enemigo.y <= 0){
+  
+        if (enemigo.y <= 0) {
           console.log("arriba");
-          enemigo.rebotar(); 
-        }
-
-      
-        if (enemigo.y >= 400){
-          console.log("abajo");
           enemigo.rebotar();
         }
-      
+  
+  
+        if (enemigo.y >= 400) {
+          console.log("abajo");
+          enemigo.rebotar();
+        }*/
+
       break;
     case (3):
-      image(pag_grande, 0, 0);
+      image(pag_grande, 0, 0); //pantalla de codigo
       fill(0);
       textSize(36);
       text("2", 930, 98);
       break;
     case (4):
-      image(diario_gran, 0, 0);
+      image(diario_gran, 0, 0); //pantalla ingresar codigo
       fill(0);
       textSize(36);
       text("2", 930, 98);
       break;
     case (5):
-      image(tienda, 0, 0);
+      image(tienda, 0, 0); //pantalla tienda embrujada
       personaje.mostrar();
       fill(0);
       textSize(36);
       text("3", 930, 98);
+
+      //Pintar los personajes dependiendo la elección
+
+      //Tio Stan
+      if (tioStann === true) {
+        personaje.mostrarTiostan();
+      }
+
+      //Mabel
+      if (mabell === true) {
+        personaje.mostrarMabel();
+      }
+
+      //Dipper
+      if (dipperr === true) {
+        personaje.mostrarDipper();
+      }
       break;
+
     case (6):
-      image(bosque, 0, 0);
+      image(bosque, 0, 0); //pantalla bosque 
       personaje.mostrar();
       fill(0);
       textSize(36);
       text("5", 930, 98);
+
+      //Pintar los personajes dependiendo la elección
+
+      //Tio Stan
+      if (tioStann === true) {
+        personaje.mostrarTiostan();
+      }
+
+      //Mabel
+      if (mabell === true) {
+        personaje.mostrarMabel();
+      }
+
+      //Dipper
+      if (dipperr === true) {
+        personaje.mostrarDipper();
+      }
       break;
+
     case (7):
-      image(portal, 0, 0);
+      image(portal, 0, 0); //pantalla laboratorio y portal 
       personaje.mostrar();
       fill(0);
       textSize(36);
       text("6", 930, 98);
-      break;
-    case (8):
-      image(gameO, 0, 0);
-      break;
-    case (9):
-      image(winner, 0, 0);
-      break;
-  
-  
+
+      //Pintar los personajes dependiendo la elección
+
+      //Tio Stan
+      if (tioStann === true) {
+        personaje.mostrarTiostan();
       }
 
+      //Mabel
+      if (mabell === true) {
+        personaje.mostrarMabel();
+      }
+
+      //Dipper
+      if (dipperr === true) {
+        personaje.mostrarDipper();
+      }
+      break;
+
+    case (8):
+      image(gameO, 0, 0); //Pantalla Game Over
+      break;
+
+    case (9):
+      image(winner, 0, 0); //Pantalla ganador
+      break;
+
+  }
 }
 
 function mousePressed() {
 
+  //cambio de pantalla
   switch (pantalla) {
 
     case 0: //Pantalla de inicio
@@ -227,17 +264,17 @@ function mousePressed() {
 
       }
 
-       //Botón mabel
-       if (mouseX > 779 && mouseX < 779 + 144 &&
-         mouseY > 224 && mouseY < 224 + 205) {
-         mabell = true;
-       }
+      //Botón mabel
+      if (mouseX > 779 && mouseX < 779 + 144 &&
+        mouseY > 224 && mouseY < 224 + 205) {
+        mabell = true;
+      }
 
-       //Botón dipper
-       if (mouseX > 426 && mouseX < 426 + 144 &&
-         mouseY > 224 && mouseY < 224 + 205) {
-         dipperr = true;
-       }
+      //Botón dipper
+      if (mouseX > 426 && mouseX < 426 + 144 &&
+        mouseY > 224 && mouseY < 224 + 205) {
+        dipperr = true;
+      }
 
       //boton de comenzar
       if (mouseX > 402 && mouseX < 402 + 176 &&
@@ -257,11 +294,8 @@ function mousePressed() {
 
 }
 
+function keyPressed() {
 
-
-
-function keyPressed(){
-  
   personaje.mover();
   console.log(personaje.mover);
 
