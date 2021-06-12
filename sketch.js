@@ -65,8 +65,6 @@ function setup() {
 
 personaje = new Personaje();
 
-
-
 }
 
 function draw() {
@@ -123,33 +121,6 @@ function draw() {
 
       enemigo.mover();
       enemigo.rebotar();
-
-      /*  if (enemigo.x <= 0) {
-          console.log("izquierda");
-         // enemigo.rebotar();
-        }
-  
-  
-        if (enemigo.x >= 900) {
-          console.log("derecha");
-         // enemigo.rebotar();
-        }
-  
-        if (enemigo.y <= 0) {
-          console.log("arriba");
-
-          enemigo.rebotar();
-
-        }
-  
-  
-        if (enemigo.y >= 400) {
-          console.log("abajo");
-
-
-          enemigo.rebotar();
-        }*/
-
 
       break;
     case (3):
