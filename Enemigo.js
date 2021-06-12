@@ -5,12 +5,12 @@ class Enemigo {
     
 }
 
-mostrarRaton(){
+raton(){
     
     image(raton,750,100);
 }
 
-mostrarMurcie(){
+murcie(){
     image(muercie,750,100);
 }
  }
