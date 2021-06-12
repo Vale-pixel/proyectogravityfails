@@ -131,6 +131,7 @@ function draw() {
           console.log("arriba");
           enemigo.rebotar(); 
         }
+        
       
         if (enemigo.y >= 400){
           console.log("abajo");
