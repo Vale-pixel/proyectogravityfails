@@ -10,7 +10,7 @@ class Personaje{
     }
     
     mostrar(){
-        
+        image(tiostan, this.xpersonaje, this.ypersonaje);
        
 
     }
