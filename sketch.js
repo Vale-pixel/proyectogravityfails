@@ -9,10 +9,16 @@ let arregloA = [];
 let pantalla = 0;
 let presionado = false;
 let personaje;
-let enemigo = new Enemigo;
+
+
+let enemigo = new Enemigo(500,50,1);
 let arma = new ArmaE;
 
 let vida = [];
+
+let tioStann = false;
+let mabell = false;
+let dipperr = false;
 
 //let libro = new Libro();
 
@@ -64,9 +70,7 @@ function setup() {
   for (let i = 0; i < 4; i++) {
     let x = (i * 76) + 40;
     let y = 40;
-    vida.push(new Vida(x, y));
-
-
+    vida.push(new Vida(x,y));
   }
 personaje = new Personaje();
 }
@@ -95,19 +99,66 @@ function draw() {
      
      
     case (2):
+      
       image(cuarto, 0, 0);
+
       enemigo.raton();
       fill(0);
       textSize(36);
       text("1", 930, 98);
+
+        //Pintar los personajes dependiendo la elección
+
+      //Tio Stan
+      if (tioStann === true) {
+        personaje.mostrarTiostan();
+      }
+
+      //Mabel
+      if (mabell === true) {
+        personaje.mostrarMabel();
+      }
+
+      //Dipper
+      if (dipperr === true) {
+          personaje.mostrarDipper();
+      }
+
       for (let i = 0; i < vida.length; i++) {
 
         vida[i].mostrar();
 
-        
+      }
         
 
+      enemigo.mover();
+
+      for (let i = 0; i < vida.length; i++) {
+        vida[i].mostrar();
       }
+  
+        if (enemigo.x <= 0){
+          console.log("izquierda");
+          enemigo.rebotar();
+        }
+      
+      
+        if (enemigo.x >= 900){
+          console.log("derecha");
+          enemigo.rebotar();
+        }
+
+        if (enemigo.y <= 0){
+          console.log("arriba");
+          enemigo.rebotar(); 
+        }
+
+      
+        if (enemigo.y >= 400){
+          console.log("abajo");
+          enemigo.rebotar();
+        }
+      
       break;
     case (3):
       image(pag_grande, 0, 0);
@@ -148,50 +199,72 @@ function draw() {
     case (9):
       image(winner, 0, 0);
       break;
+  
+  
+      }
+
+}
+
+function mousePressed() {
+
+  switch (pantalla) {
+
+    case 0: //Pantalla de inicio
+
+      //Botón de comenzar
+      if (mouseX > 402 && mouseX < 402 + 176 &&
+        mouseY > 440 && mouseY < 440 + 39) {
+        pantalla = 1;
+      }
+      break;
+
+    case 1: //Pantalla de elección de personaje
+
+      //Botón Tio Stan
+      if (mouseX > 56 && mouseX < 56 + 144 &&
+        mouseY > 224 && mouseY < 224 + 205) {
+        tioStann = true;
+
+      }
+
+       //Botón mabel
+       if (mouseX > 779 && mouseX < 779 + 144 &&
+         mouseY > 224 && mouseY < 224 + 205) {
+         mabell = true;
+       }
+
+       //Botón dipper
+       if (mouseX > 426 && mouseX < 426 + 144 &&
+         mouseY > 224 && mouseY < 224 + 205) {
+         dipperr = true;
+       }
+
+      //boton de comenzar
+      if (mouseX > 402 && mouseX < 402 + 176 &&
+        mouseY > 440 && mouseY < 440 + 39) {
+        pantalla = 2;
+      }
+
+      break;
+
+    case 2:
+
+      break;
   }
+
+  console.log(mouseX, mouseY);
 
 
 }
 
-function mouseClicked() {
 
-  if (pantalla === 0) {
-    if (mouseX > 402 && mouseX < 402 + 176 && mouseY > 440 && mouseY < 440 + 39) {
-      pantalla = 1;
-    }
-  }else if (pantalla === 1) {
-    
-    if (mouseX > 402 && mouseX < 402 + 176 && mouseY > 440 && mouseY < 440 + 39) {
-      pantalla = 2;
-  
-  
-    }
-  }
-personaje.mostrarTiostan();
-  console.log(mouseX, mouseY);
-
-
-  
-  }
-    
 
 
 function keyPressed(){
-  /* switch (key) {
-    case 'a':
-      personaje.mover('LEFT');
-      break;
-    case 'd':
-      personaje.mover('RIGHT');
-      break;
-    case 'w' :
-      personaje.mover ('UP');
-    case 's' :
-      personaje.mover ('DOWN');
-
-  }*/
+  
   personaje.mover();
   console.log(personaje.mover);
 
 }
+
 
