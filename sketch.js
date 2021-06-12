@@ -73,6 +73,8 @@ function setup() {
     vida.push(new Vida(x,y));
   }
 personaje = new Personaje();
+
+
 }
 
 function draw() {
@@ -139,24 +141,24 @@ function draw() {
   
         if (enemigo.x <= 0){
           console.log("izquierda");
-          enemigo.rebotar();
+         // enemigo.rebotar();
         }
       
       
         if (enemigo.x >= 900){
           console.log("derecha");
-          enemigo.rebotar();
+         // enemigo.rebotar();
         }
 
         if (enemigo.y <= 0){
           console.log("arriba");
-          enemigo.rebotar(); 
+         // enemigo.rebotar(); 
         }
 
       
         if (enemigo.y >= 400){
           console.log("abajo");
-          enemigo.rebotar();
+          //enemigo.rebotar();
         }
       
       break;
@@ -215,6 +217,7 @@ function mousePressed() {
       if (mouseX > 402 && mouseX < 402 + 176 &&
         mouseY > 440 && mouseY < 440 + 39) {
         pantalla = 1;
+        
       }
       break;
 
@@ -224,6 +227,9 @@ function mousePressed() {
       if (mouseX > 56 && mouseX < 56 + 144 &&
         mouseY > 224 && mouseY < 224 + 205) {
         tioStann = true;
+        personaje.disparar();
+        console.log('disparo');
+        
 
       }
 
@@ -231,12 +237,17 @@ function mousePressed() {
        if (mouseX > 779 && mouseX < 779 + 144 &&
          mouseY > 224 && mouseY < 224 + 205) {
          mabell = true;
+         personaje.disparar();
+         console.log('disparo');
+
        }
 
        //Botón dipper
        if (mouseX > 426 && mouseX < 426 + 144 &&
          mouseY > 224 && mouseY < 224 + 205) {
          dipperr = true;
+         personaje.
+         console.log('disparo');
        }
 
       //boton de comenzar

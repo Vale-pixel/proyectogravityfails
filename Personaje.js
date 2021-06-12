@@ -3,7 +3,7 @@ class Personaje {
         this.x = 30;//pixeles
         this.y = 30;//pixeles
 
-        this.personaje = [];
+       
         this.armaP = [];
         this.enemigo = [];
     }
@@ -29,28 +29,51 @@ class Personaje {
 
     mostrarTiostan(){
         image(tiostan, this.x, this.y);
+        this.arregloArma();
+        
     }
     
         mostrarMabel(){
         image(mabel, this.x, this.y);
+        this.arregloArma();
+       
     }
     
         mostrarDipper(){
         image(dipper, this.x, this.y);
-    }
-        cambioPersonaje() {
-    
-        }
-
-    cambioPersonaje() {
-
+        this.arregloArma();
+        
     }
 
-    mouseClicked(){
-      
+    arregloArma(){
+        for(let i = 0; i < this.armaP.length ; i ++){
+            this.armaP[i].mostrar();
+            this.removerTiroInactivo();
+            this.removerEnemigo();
         }
-    
-    
+
+    }
+    disparar() {
+         this.armaP.push(new ArmaP(this.x, this.y));
+    }
+
+    traerTiro() {
+        return this.armaP;
+
+    }
+
+    removerTiroInactivo() {
+        for(let i = 0; i < this.armaP.lenght ; i ++){
+            if(!this.armaP[i].estaActivo()){
+                //remover
+                this.armaP.splice(i,1);
+                break;
+            }
+        }    
+
+
+
+    }   
 
     mover() {
         switch (key) {
@@ -82,19 +105,24 @@ class Personaje {
         }
     }
 
-    disparar() {
-        // this.armaP.push(new )
-    }
+    
 
-    traerTiros() {
-
-    }
-
-    RemoverTiros() {
+    traerEnemigo() {
+        this.enemigo.push(new Enemigo(raton));
 
     }
 
-    TraerEnemigo() {
+    removerEnemigo(){
+        for(let i = 0; i < this.enemigo.lenght ; i ++){
+            if(!this.enemigo[i].estaMuertoE()){
+                //remove
+                this.enemigo.splice(i,1);
+                break;
+                
+    
+            }
+        }    
+
 
     }
 
