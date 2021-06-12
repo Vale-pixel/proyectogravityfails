@@ -1,31 +1,12 @@
 class Personaje {
     constructor() {
-        this.x = 30;//pixeles
-        this.y = 30;//pixeles
+        this.x = 50;//pixeles
+        this.y = 337;//pixeles
 
        
         this.armaP = [];
         this.enemigo = [];
     }
-
-
-
-    /*mostrar() {
-        switch (escogerPersonaje){
-            case 'tiostan':
-                image(tiostan, this.x, this.y);
-                break;
-            case 'dipper':
-                image(dipper, this.x, this.y);
-                break;
-            case 'mabel':
-                image(mabel, this.x, this.y);
-                break;
-        }
-     //  personaje.mouseClicked();
-       console.log(personaje);
-    }
-    */
 
     mostrarTiostan(){
         image(tiostan, this.x, this.y);
@@ -60,6 +41,7 @@ class Personaje {
     traerTiro() {
         return this.armaP;
 
+
     }
 
     removerTiroInactivo() {
@@ -70,10 +52,10 @@ class Personaje {
                 break;
             }
         }    
+    }
 
+   
 
-
-    }   
 
     mover() {
         switch (key) {
@@ -125,10 +107,6 @@ class Personaje {
 
 
     }
-
-
-
-
-
-
 }
+
+
