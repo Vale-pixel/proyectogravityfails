@@ -28,13 +28,20 @@ class Personaje {
     */
 
     mostrarTiostan(){
-        if(pantalla === 1 ){
-            if ( mouseX > 56 && mouseX < 56 + 144 && mouseY > 224 && mouseY < 224 + 205){
-              pantalla =2;
-              image(tiostan, this.x, this.y);
-            }
+        image(tiostan, this.x, this.y);
     }
-}
+    
+        mostrarMabel(){
+        image(mabel, this.x, this.y);
+    }
+    
+        mostrarDipper(){
+        image(dipper, this.x, this.y);
+    }
+        cambioPersonaje() {
+    
+        }
+
     cambioPersonaje() {
 
     }
@@ -46,16 +53,7 @@ class Personaje {
         }
     
     
-/*
-        if(pantalla === 1 ){
-            if  ( mouseX > 426 && mouseX < 426 + 144 && mouseY > 224 && mouseY < 224 + 205);
-            personaje = image(dipper, this.x, this.y);
-           }
-           if(pantalla === 1 ){
-            if  ( mouseX > 779 && mouseX < 779 + 144 && mouseY > 224 && mouseY < 224 + 205);
-            personaje = image(mabel, this.x, this.y);
-           }
-           */
+
         
 
     
