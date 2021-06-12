@@ -3,14 +3,12 @@ let inicial, escogerP, cuarto, tienda, bosque, portal, pag_grande, diario_gran, 
   fuegoazul, fuegorosa, corazon, linterna;
 
 let arregloA = [];
-let arregloB1 = [new Array(26)];
-let arregloB2 = [new Array(52)];
 
-let mapa = [];
+
 
 let pantalla = 0;
 let presionado = false;
-
+let personaje;
 let enemigo = new Enemigo;
 let arma = new ArmaE;
 
@@ -61,19 +59,7 @@ function preload() {
 function setup() {
   createCanvas(1000, 500);
 
-  for (let i = 0; i < 26; i++) {
-    mapa.push(new Array(26));
-    for (let j = 0; j < 52; j++) {
-      mapa.push(new Array(52));
-    }
-  }
-  for (let fil = 0; fil < 26; fil++) {
-    for (let col = 0; col < 52; col++) {
-      mapa[fil][col] = 0;
-    }
 
-    console.log(mapa)
-  }
 
   for (let i = 0; i < 4; i++) {
     let x = (i * 76) + 40;
@@ -82,23 +68,12 @@ function setup() {
 
 
   }
-
+personaje = new Personaje();
 }
 
 function draw() {
 
-  for (let fil = 0; fil < 26; fil++) {
-    for (let col = 0; col < 52; col++) {
-      if (mapa[fil][col] === 0) {
-        fill(255);
-      } else if (mapa[fil][col] === 1) {
-        fill(0);
-      }
-      stroke(0);
-      rect(col * 22, fil * 22, 22, 22);
-    }
-
-  }
+ 
 
 
   switch (pantalla) {
@@ -113,7 +88,12 @@ function draw() {
       fill(255);
       textSize(15);
       text("CON UN CLICK", 438, 142)
+
+
       break;
+      
+     
+     
     case (2):
       image(cuarto, 0, 0);
       enemigo.raton();
@@ -123,6 +103,9 @@ function draw() {
       for (let i = 0; i < vida.length; i++) {
 
         vida[i].mostrar();
+
+        
+        
 
       }
       break;
@@ -140,18 +123,21 @@ function draw() {
       break;
     case (5):
       image(tienda, 0, 0);
+      personaje.mostrar();
       fill(0);
       textSize(36);
       text("3", 930, 98);
       break;
     case (6):
       image(bosque, 0, 0);
+      personaje.mostrar();
       fill(0);
       textSize(36);
       text("5", 930, 98);
       break;
     case (7):
       image(portal, 0, 0);
+      personaje.mostrar();
       fill(0);
       textSize(36);
       text("6", 930, 98);
@@ -174,10 +160,38 @@ function mouseClicked() {
       pantalla = 1;
     }
   }else if (pantalla === 1) {
+    
     if (mouseX > 402 && mouseX < 402 + 176 && mouseY > 440 && mouseY < 440 + 39) {
       pantalla = 2;
+  
+  
     }
   }
+personaje.mostrarTiostan();
   console.log(mouseX, mouseY);
+
+
+  
+  }
+    
+
+
+function keyPressed(){
+  /* switch (key) {
+    case 'a':
+      personaje.mover('LEFT');
+      break;
+    case 'd':
+      personaje.mover('RIGHT');
+      break;
+    case 'w' :
+      personaje.mover ('UP');
+    case 's' :
+      personaje.mover ('DOWN');
+
+  }*/
+  personaje.mover();
+  console.log(personaje.mover);
+
 }
 
