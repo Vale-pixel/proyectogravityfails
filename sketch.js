@@ -198,10 +198,8 @@ function mouseClicked() {
     }
   }
 personaje.mostrarTiostan();
-  console.log(mouseX, mouseY);
+  //console.log(mouseX, mouseY);
 
-
-  
   }
     
 
