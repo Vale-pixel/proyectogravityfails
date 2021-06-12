@@ -7,11 +7,15 @@ class ArmaP{
 
 
     mostrar(){
+        image();
 
     }
 
     mover(){
         this.xarmaP --;
-        if(this.xArmaP > width){}
+        if(this.xArmaP > width){
+            this.activo = false;
+        }
     }
+
 }

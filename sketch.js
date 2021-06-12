@@ -147,11 +147,15 @@ function mouseClicked() {
   if (mouseX > 402 && mouseX < 402 + 176 && mouseY > 440 && mouseY < 440 + 39) {
     if (pantalla === 0) {
       presionado = !presionado;
-      pantalla += 1;
+      pantalla = 1;
     }
   }
- 
-
+  if (mouseX > 402 && mouseX < 402 + 176 && mouseY > 440 && mouseY < 440 + 39) {
+    if (pantalla === 1) {
+      presionado = !presionado;
+      pantalla = 2;
+    }
+  }
   console.log(mouseX, mouseY);
 }
 
