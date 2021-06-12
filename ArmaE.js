@@ -4,19 +4,21 @@ class ArmaE {
     this.y = y;
 }
 
-mostrarTronco(){
+tronco(){
     
     image(tronco,50,50);
+
 }
 
-mostrarAzul(){
+fuegoAzul(){
     
     image(fuegoazul,50,50);
 }
 
-mostrarVerde(){
+fuegoRosa(){
 
     image(fuegorosa,50,50);
 }
+
 
 }

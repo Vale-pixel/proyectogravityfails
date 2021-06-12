@@ -110,7 +110,7 @@ function draw() {
       break;
     case (2):
       image(cuarto, 0, 0);
-      enemigo.mostrarRaton();
+      enemigo.raton();
       for (let i = 0; i < vida.length; i++) {
      
         vida[i].mostrar();
