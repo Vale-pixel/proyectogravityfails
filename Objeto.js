@@ -1,4 +1,4 @@
-Class Objeto{
+class Objeto{
     contructor(){
 
     }

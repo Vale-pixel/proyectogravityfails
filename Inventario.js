@@ -1,4 +1,4 @@
-Class Inventario{
+class Inventario{
     constructor(){
 
     }
