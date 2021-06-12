@@ -6,7 +6,7 @@ let pantalla = 0;
 let presionado = false;
 let personaje;
 
-let enemigo = new Enemigo(500, 50, 1);
+let ratonI = new Raton(500, 50, 1);
 let arma = new ArmaE;
 
 let vida = [];
@@ -90,7 +90,7 @@ function draw() {
 
       image(cuarto, 0, 0);//pantalla cuarto dipper y mabel
 
-      enemigo.raton();
+      ratonI.mostrar();
       fill(0);
       textSize(36);
       text("1", 930, 98);
@@ -121,8 +121,8 @@ function draw() {
         vida[i].mostrar();
       }
 
-      enemigo.mover();
-      enemigo.rebotar();
+      ratonI.mover();
+      ratonI.rebotar();
 
       /*  if (enemigo.x <= 0) {
           console.log("izquierda");
@@ -291,7 +291,7 @@ function mousePressed() {
        if (mouseX > 426 && mouseX < 426 + 144 &&
          mouseY > 224 && mouseY < 224 + 205) {
          dipperr = true;
-         personaje.
+         
          console.log('disparo');
        }
 

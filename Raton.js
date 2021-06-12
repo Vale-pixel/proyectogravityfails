@@ -9,7 +9,7 @@ class Raton {
 
     }
 
-    raton(){
+    mostrar(){
         image(raton, this.x, this.y);
     }
     mover() {

@@ -26,6 +26,10 @@ class Personaje {
         
     }
 
+    recolectarP(){
+        
+    }
+
     arregloArma(){
         for(let i = 0; i < this.armaP.length ; i ++){
             this.armaP[i].mostrar();
