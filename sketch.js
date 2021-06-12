@@ -124,31 +124,9 @@ function draw() {
       ratonI.mover();
       ratonI.rebotar();
 
-      /*  if (enemigo.x <= 0) {
-          console.log("izquierda");
-         // enemigo.rebotar();
-        }
-  
-  
-        if (enemigo.x >= 900) {
-          console.log("derecha");
-         // enemigo.rebotar();
-        }
-  
-        if (enemigo.y <= 0) {
-          console.log("arriba");
 
-          enemigo.rebotar();
-
-        }
-  
-  
-        if (enemigo.y >= 400) {
-          console.log("abajo");
-
-
-          enemigo.rebotar();
-        }*/
+      image(alfombra, 287,126);
+console.log(mouseX, mouseY);
 
 
       break;
@@ -301,25 +279,39 @@ function mousePressed() {
       if (mouseX > 402 && mouseX < 402 + 176 &&
         mouseY > 440 && mouseY < 440 + 39) {
         pantalla = 2;
+       
       }
+
+
 
       break;
 
     case 2:
+      if(mouseX > image(alfombra, 287,126) && mouseX < image(alfombra, 287,126) &&
+        mouseY > image(alfombra, 287,126) && mouseY < image(alfombra, 287,126)) {
+          image(alfombra,230, 115);
 
       break;
   }
+
 
   console.log(mouseX, mouseY);
 
 
 }
-
+}
 function keyPressed() {
 
   personaje.mover();
+  
   console.log(personaje.mover);
 
 }
 
+function mouseDragged(){
+  if(image(alfombra, 287,126)){
+  image(alfombra, mouseX, mouseY)
+  return false;
+  }
+}
 
