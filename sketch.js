@@ -2,7 +2,7 @@ let inicial, escogerP, cuarto, tienda, bosque, portal, pag_grande, diario_gran, 
   tiostan, raton, muercie, abuela, abuelo, hombreTauro, gnomo, bill, rosa, hacha, paginas, alfombra, cinta, tronco,
   fuegoazul, fuegorosa, corazon, linterna;
 
-  let arregloA = [];
+let arregloA = [];
 let arregloB1 = [new Array(26)];
 let arregloB2 = [new Array(52)];
 
@@ -15,6 +15,9 @@ let enemigo = new Enemigo;
 let arma = new ArmaE;
 
 let vida = [];
+
+//let libro = new Libro();
+
 
 function preload() {
   //pantallas
@@ -73,16 +76,17 @@ function setup() {
   }
 
   for (let i = 0; i < 4; i++) {
-    let x = (i*76)+40;
+    let x = (i * 76) + 40;
     let y = 40;
-    vida.push(new Vida(x,y));
+    vida.push(new Vida(x, y));
 
-    
+
   }
-    
+
 }
 
 function draw() {
+
   for (let fil = 0; fil < 26; fil++) {
     for (let col = 0; col < 52; col++) {
       if (mapa[fil][col] === 0) {
@@ -93,13 +97,15 @@ function draw() {
       stroke(0);
       rect(col * 22, fil * 22, 22, 22);
     }
-    
+
   }
 
 
   switch (pantalla) {
+
     case (0):
       image(inicial, 0, 0);
+
       break;
     case (1):
       image(escogerP, 0, 0);
@@ -111,27 +117,44 @@ function draw() {
     case (2):
       image(cuarto, 0, 0);
       enemigo.raton();
+      fill(0);
+      textSize(36);
+      text("1", 930, 98);
       for (let i = 0; i < vida.length; i++) {
-     
+
         vida[i].mostrar();
 
-        
       }
       break;
     case (3):
       image(pag_grande, 0, 0);
+      fill(0);
+      textSize(36);
+      text("2", 930, 98);
       break;
     case (4):
       image(diario_gran, 0, 0);
+      fill(0);
+      textSize(36);
+      text("2", 930, 98);
       break;
     case (5):
       image(tienda, 0, 0);
+      fill(0);
+      textSize(36);
+      text("3", 930, 98);
       break;
     case (6):
       image(bosque, 0, 0);
+      fill(0);
+      textSize(36);
+      text("5", 930, 98);
       break;
     case (7):
       image(portal, 0, 0);
+      fill(0);
+      textSize(36);
+      text("6", 930, 98);
       break;
     case (8):
       image(gameO, 0, 0);
@@ -141,18 +164,19 @@ function draw() {
       break;
   }
 
+
 }
 
 function mouseClicked() {
-  if (mouseX > 402 && mouseX < 402 + 176 && mouseY > 440 && mouseY < 440 + 39) {
-    if (pantalla === 0) {
-      presionado = !presionado;
+
+  if (pantalla === 0) {
+    if (mouseX > 402 && mouseX < 402 + 176 && mouseY > 440 && mouseY < 440 + 39) {
       pantalla = 1;
     }
   }
-  if (mouseX > 402 && mouseX < 402 + 176 && mouseY > 440 && mouseY < 440 + 39) {
-    if (pantalla === 1) {
-      presionado = !presionado;
+
+  if (pantalla === 1) {
+    if (mouseX > 402 && mouseX < 402 + 176 && mouseY > 440 && mouseY < 440 + 39) {
       pantalla = 2;
     }
   }
