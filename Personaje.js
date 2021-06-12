@@ -48,14 +48,8 @@ class Personaje {
 
     mouseClicked(){
       
-         /* personaje = image(tiostan, this.x, this.y);
-         console.log('tocó');*/
         }
     
-    
-
-        
-
     
 
     mover() {
@@ -90,7 +84,6 @@ class Personaje {
 
     disparar() {
         // this.armaP.push(new )
-
     }
 
     traerTiros() {
