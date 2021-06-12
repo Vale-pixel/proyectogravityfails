@@ -6,10 +6,12 @@ let arregloA = [];
 
 
 
-let pantalla = 0;
+let pantalla = 2;
 let presionado = false;
 let personaje;
-let enemigo = new Enemigo;
+
+
+let enemigo = new Enemigo(500,50,1);
 let arma = new ArmaE;
 
 let vida = [];
@@ -64,9 +66,7 @@ function setup() {
   for (let i = 0; i < 4; i++) {
     let x = (i * 76) + 40;
     let y = 40;
-    vida.push(new Vida(x, y));
-
-
+    vida.push(new Vida(x,y));
   }
 personaje = new Personaje();
 }
@@ -95,7 +95,9 @@ function draw() {
      
      
     case (2):
+      
       image(cuarto, 0, 0);
+
       enemigo.raton();
       fill(0);
       textSize(36);
@@ -104,10 +106,37 @@ function draw() {
 
         vida[i].mostrar();
 
-        
+      }
         
 
+      enemigo.mover();
+
+      for (let i = 0; i < vida.length; i++) {
+        vida[i].mostrar();
       }
+  
+        if (enemigo.x <= 0){
+          console.log("izquierda");
+          enemigo.rebotar();
+        }
+      
+      
+        if (enemigo.x >= 900){
+          console.log("derecha");
+          enemigo.rebotar();
+        }
+
+        if (enemigo.y <= 0){
+          console.log("arriba");
+          enemigo.rebotar(); 
+        }
+
+      
+        if (enemigo.y >= 400){
+          console.log("abajo");
+          enemigo.rebotar();
+        }
+      
       break;
     case (3):
       image(pag_grande, 0, 0);
@@ -148,8 +177,9 @@ function draw() {
     case (9):
       image(winner, 0, 0);
       break;
-  }
-
+  
+  
+      }
 
 }
 
@@ -194,4 +224,5 @@ function keyPressed(){
   console.log(personaje.mover);
 
 }
+
 
