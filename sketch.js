@@ -6,7 +6,7 @@ let pantalla = 0;
 let presionado = false;
 let personaje;
 
-let enemigo = new Enemigo(500, 50, 1);
+let ratonI = new Raton(500, 50, 1);
 let arma = new ArmaE;
 
 let vida = [];
@@ -88,7 +88,7 @@ function draw() {
 
       image(cuarto, 0, 0);//pantalla cuarto dipper y mabel
 
-      enemigo.raton();
+      ratonI.mostrar();
       fill(0);
       textSize(36);
       text("1", 930, 98);
@@ -119,8 +119,15 @@ function draw() {
         vida[i].mostrar();
       }
 
-      enemigo.mover();
-      enemigo.rebotar();
+
+      ratonI.mover();
+      ratonI.rebotar();
+
+
+      image(alfombra, 287,126);
+console.log(mouseX, mouseY);
+
+
 
       break;
     case (3):
@@ -262,7 +269,7 @@ function mousePressed() {
        if (mouseX > 426 && mouseX < 426 + 144 &&
          mouseY > 224 && mouseY < 224 + 205) {
          dipperr = true;
-         personaje.
+         
          console.log('disparo');
        }
 
@@ -272,25 +279,39 @@ function mousePressed() {
       if (mouseX > 402 && mouseX < 402 + 176 &&
         mouseY > 440 && mouseY < 440 + 39) {
         pantalla = 2;
+       
       }
+
+
 
       break;
 
     case 2:
+      if(mouseX > image(alfombra, 287,126) && mouseX < image(alfombra, 287,126) &&
+        mouseY > image(alfombra, 287,126) && mouseY < image(alfombra, 287,126)) {
+          image(alfombra,230, 115);
 
       break;
   }
+
 
   console.log(mouseX, mouseY);
 
 
 }
-
+}
 function keyPressed() {
 
   personaje.mover();
+  
   console.log(personaje.mover);
 
 }
 
+function mouseDragged(){
+  if(image(alfombra, 287,126)){
+  image(alfombra, mouseX, mouseY)
+  return false;
+  }
+}
 

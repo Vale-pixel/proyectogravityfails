@@ -26,6 +26,21 @@ class Personaje {
         
     }
 
+    recolectarP(){
+        if(pantalla === 2){
+        if (mouseX > 992 && mouseX < 922 + 36 &&
+            mouseY > 43 && mouseY < 43 + 78) {      
+            textSize(20);
+            fill(255);
+            text('Encuentra el elemento esencial para explorar el siguente nivel', 187,481);
+           
+        }
+    }
+        return false;
+        
+
+    }
+
     arregloArma(){
         for(let i = 0; i < this.armaP.length ; i ++){
             this.armaP[i].mostrar();
