@@ -65,8 +65,6 @@ function setup() {
 
 personaje = new Personaje();
 
-
-
 }
 
 function draw() {
@@ -121,12 +119,14 @@ function draw() {
         vida[i].mostrar();
       }
 
+
       ratonI.mover();
       ratonI.rebotar();
 
 
       image(alfombra, 287,126);
       console.log(mouseX, mouseY);
+
 
 
       break;
