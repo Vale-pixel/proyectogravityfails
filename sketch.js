@@ -126,7 +126,7 @@ function draw() {
 
 
       image(alfombra, 287,126);
-console.log(mouseX, mouseY);
+      console.log(mouseX, mouseY);
 
 
       break;
