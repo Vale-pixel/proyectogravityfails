@@ -2,15 +2,17 @@ class Objeto{
     contructor(){
         this.x = x;
         this.y = y;
+        this.recolectado = false;
 
     }
 
 mostrar(){
-    image(paginas,)
+    image(paginas,this.x, this.y);
 
 }
 
-recolectado(){
+estaRecolectado(){
+    return this.recolectado
     
 }
 }

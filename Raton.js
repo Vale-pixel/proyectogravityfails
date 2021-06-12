@@ -39,19 +39,19 @@ class Raton {
     rebotar() {
         if (this.y >= 400) {
             let nr = (Math.random() * 3) + 1;
-            console.log(this.dir);
+            
             this.dir = nr == 1 ? 6 : nr == 2 ? 1 : 4;
         } else if (this.y <= 40) {
             let nr = (Math.random() * 3) + 1;
-            console.log(this.dir);
+          
             this.dir = nr == 1 ? 7 : nr == 2 ? 4 : 6;
         } else if (this.x <= 60) {
             let nr = (Math.random() * 3) + 2;
-            console.log(this.dir);
+           
             this.dir = nr == 1 ? 7 : nr == 2 ? 2 : 2;
         } else if (this.x >= 940) {
             let nr = (Math.random() * 3) + 2;
-            console.log(this.dir);
+           
             this.dir = nr == 1 ? 7 : nr == 2 ? 2 : 6;
         }
     }
