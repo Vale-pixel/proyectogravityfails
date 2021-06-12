@@ -9,4 +9,11 @@ mostrar(){
     image(corazon,this.x,this.y);
 }
 
+pierdeVidas(){
+
+}
+
+reiniciaVidas(){
+    
+}
 }
