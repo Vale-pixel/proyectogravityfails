@@ -173,9 +173,7 @@ function mouseClicked() {
     if (mouseX > 402 && mouseX < 402 + 176 && mouseY > 440 && mouseY < 440 + 39) {
       pantalla = 1;
     }
-  }
-
-  if (pantalla === 1) {
+  }else if (pantalla === 1) {
     if (mouseX > 402 && mouseX < 402 + 176 && mouseY > 440 && mouseY < 440 + 39) {
       pantalla = 2;
     }
