@@ -12,6 +12,12 @@ class ArmaP{
         this.mover();
 
     }
+    
+
+    mostrarRayos(){
+        rect((this.x)+3,(this.y)-3,3,8);
+        this.mover();
+    }
 
     mover(){
         this.x ++;
