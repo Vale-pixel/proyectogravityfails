@@ -69,6 +69,9 @@ personaje = new Personaje();
 
 function draw() {
 
+  fill(234);
+  ellipse(10,10,150,159);
+
   //pantallas con sus elementos
   switch (pantalla) {
 
