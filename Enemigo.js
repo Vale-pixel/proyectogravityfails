@@ -3,7 +3,7 @@ class Enemigo {
     this.x = x;
     this.y = y;
     this.dir = dir;
-    this.vel = 10;
+    this.vel = 5;
     this.randomX = 0;
     this.randomDir = 0;
   }
@@ -58,16 +58,9 @@ class Enemigo {
       this.dir = nr == 1 ? 7 : nr == 2 ? 2 : 6;
     }
   }
-  verificarImpacto(x, y){ // además de marcarlo como muerto... retorna el valor para usarlo
-    if(x > this.x && x <(this.x + 46) && y > this.y && y < this.y + 30){        
-        this.muerto = true; // muere cuando lo tocan no?
-        return true;
-    }
-    return false;
-  
-}
-estaMuerto(){
-    return this.muerto
-}
+ 
+
+
+
 
 }

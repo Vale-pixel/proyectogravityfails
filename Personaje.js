@@ -6,6 +6,8 @@ class Personaje {
     this.armaP = [];
     this.armaR = [];
     this.enemigo = [];
+
+    this.vida = 4;
   }
 
   mostrarTiostan() {
@@ -103,17 +105,30 @@ class Personaje {
       case "s":
         this.y += 25;
         break;
+    }
+  }
+
+  dispararGeneral() {
+    switch (key) {
       case "X":
-        this.disparar();
+        if (pantalla === 6 && 7) {
+          this.disparar();
+        }
         break;
       case "x":
-        this.disparar();
+        if (pantalla === 6 && 7) {
+          this.disparar();
+        }
         break;
       case "Z":
-        this.dispararRayos();
+        if (pantalla === 6 && 7) {
+          this.dispararRayos();
+        }
         break;
       case "z":
-        this.dispararRayos();
+        if (pantalla === 6 && 7) {
+          this.dispararRayos();
+        }
         break;
     }
   }
@@ -130,5 +145,9 @@ class Personaje {
         break;
       }
     }
+  }
+
+  reducirVida() {
+    this.vida -= 1;
   }
 }
