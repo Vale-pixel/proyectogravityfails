@@ -100,9 +100,7 @@ function setup() {
 }
 
 function draw() {
-
-  ellipse(20,20,20,20);
-
+  
   //pantallas con sus elementos
   switch (pantalla) {
     case 0:
