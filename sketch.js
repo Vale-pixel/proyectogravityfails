@@ -95,14 +95,11 @@ function preload() {
 function setup() {
   createCanvas(1000, 500);
 
-  //arreglo vidas
-  for (let i = 0; i < 4; i++) {
-    let x = i * 76 + 40;
-    let y = 40;
-    vida.push(new Vida(x, y));
-  }
-
   personaje = new Personaje();
+  console.log(personaje);
+  //arreglo vidas
+  
+
 }
 
 function draw() {
@@ -156,14 +153,7 @@ function draw() {
         personaje.mostrarDipper();
       }
 
-      //arreglo de vidas
-      for (let i = 0; i < vida.length; i++) {
-        vida[i].mostrar();
-      }
-
-      for (let i = 0; i < vida.length; i++) {
-        vida[i].mostrar();
-      }
+      mostrarVidas()
 
       //alfombra y texto
       if (x < 287) {
@@ -239,14 +229,7 @@ function draw() {
         personaje.mostrarDipper();
       }
 
-      //arreglo de vidas
-      for (let i = 0; i < vida.length; i++) {
-        vida[i].mostrar();
-      }
-
-      for (let i = 0; i < vida.length; i++) {
-        vida[i].mostrar();
-      }
+       mostrarVidas()
 
       //caja y texto
       if (dx < 855) {
@@ -319,14 +302,7 @@ function draw() {
         personaje.mostrarDipper();
       }
       
-      //arreglo de vidas
-      for (let i = 0; i < vida.length; i++) {
-        vida[i].mostrar();
-      }
-
-      for (let i = 0; i < vida.length; i++) {
-        vida[i].mostrar();
-      }
+      mostrarVidas()
 
       break;
 
@@ -357,6 +333,7 @@ function draw() {
       if (dipperr === true) {
         personaje.mostrarDipper();
       }
+      mostrarVidas()
       break;
 
     case 7:
@@ -382,6 +359,7 @@ function draw() {
       if (dipperr === true) {
         personaje.mostrarDipper();
       }
+      mostrarVidas()
       break;
       case 8:
         image(gameO, 0, 0); //Pantalla Game Over
@@ -476,4 +454,13 @@ function mousePressed() {
 function keyPressed() {
   personaje.mover();//movimiento personaje 
   personaje.dispararGeneral();//disparos de hacha y rayos z x
+}
+
+function mostrarVidas(){
+  for (let i = 0; i < personaje.vida; i++) {
+    let x1 = i * 76 + 40;
+    let y1 = 40;
+   // vida.push(new Vida(x, y));
+   image(corazon,x1,y1);
+  }
 }

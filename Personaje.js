@@ -6,6 +6,8 @@ class Personaje {
     this.armaP = [];
     this.armaR = [];
     this.enemigo = [];
+
+    this.vida=4;
   }
 
   mostrarTiostan() {
@@ -144,5 +146,9 @@ dispararGeneral(){
         break;
       }
     }
+  }
+
+  reducirVida(){
+    this.vida-=1;
   }
 }
