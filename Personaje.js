@@ -103,20 +103,34 @@ class Personaje {
       case "s":
         this.y += 25;
         break;
-      case "X":
-        this.disparar();
-        break;
-      case "x":
-        this.disparar();
-        break;
-      case "Z":
-        this.dispararRayos();
-        break;
-      case "z":
-        this.dispararRayos();
-        break;
+
     }
   }
+
+dispararGeneral(){
+  switch(key){
+  case "X":
+    if(pantalla ===6 && 7){
+    this.disparar();
+  }
+    break;
+  case "x":
+    if(pantalla ===6 && 7){
+    this.disparar();
+    }
+    break;
+  case "Z":
+    if(pantalla ===6 && 7){
+    this.dispararRayos();
+    }
+    break;
+  case "z":
+    if(pantalla ===6 && 7){
+    this.dispararRayos();
+    }
+    break;
+  }
+}
 
   traerEnemigo() {
     this.enemigo.push(new Enemigo(raton));
