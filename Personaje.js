@@ -7,7 +7,7 @@ class Personaje {
     this.armaR = [];
     this.enemigo = [];
 
-    this.vida=4;
+    this.vida = 4;
   }
 
   mostrarTiostan() {
@@ -105,34 +105,33 @@ class Personaje {
       case "s":
         this.y += 25;
         break;
-
     }
   }
 
-dispararGeneral(){
-  switch(key){
-  case "X":
-    if(pantalla ===6 && 7){
-    this.disparar();
+  dispararGeneral() {
+    switch (key) {
+      case "X":
+        if (pantalla === 6 && 7) {
+          this.disparar();
+        }
+        break;
+      case "x":
+        if (pantalla === 6 && 7) {
+          this.disparar();
+        }
+        break;
+      case "Z":
+        if (pantalla === 6 && 7) {
+          this.dispararRayos();
+        }
+        break;
+      case "z":
+        if (pantalla === 6 && 7) {
+          this.dispararRayos();
+        }
+        break;
+    }
   }
-    break;
-  case "x":
-    if(pantalla ===6 && 7){
-    this.disparar();
-    }
-    break;
-  case "Z":
-    if(pantalla ===6 && 7){
-    this.dispararRayos();
-    }
-    break;
-  case "z":
-    if(pantalla ===6 && 7){
-    this.dispararRayos();
-    }
-    break;
-  }
-}
 
   traerEnemigo() {
     this.enemigo.push(new Enemigo(raton));
@@ -148,7 +147,7 @@ dispararGeneral(){
     }
   }
 
-  reducirVida(){
-    this.vida-=1;
+  reducirVida() {
+    this.vida -= 1;
   }
 }
