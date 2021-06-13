@@ -16,7 +16,8 @@ let mabell = false;
 let dipperr = false
 let x = 287;
 let y = 126;
-let libro = 50;
+let libro = false;
+let recolectado = false;
 
 function preload() {
   //pantallas
@@ -136,7 +137,7 @@ function draw() {
       if(x < 287){
         fill(255);
         textSize(20);
-        text('acércate a las páginas para recolectarlas', 314, 481);
+        text('Da click a las páginas para recolectarlas', 314, 481);
 
       }  
       //cualidades raton
@@ -145,10 +146,19 @@ function draw() {
       ratonI.rebotar();
     
 
-      if(libro < 50){
+      if(libro){
         fill(255);
         textSize(20);
-        text('Encuentra el elemento esencial para pasar de nivel no todo el camino será sencillo', 220, 481);
+        if(libro){
+
+          text('Encuentra el elemento esencial para pasar de nivel no todo el camino será sencillo', 120, 481)
+        }else {
+          
+        }
+      }
+
+      if(recolectado){
+        image(paginas, 907, 135);
       }
 
 
@@ -318,12 +328,7 @@ function mousePressed() {
       break;
     
       case 3:
-        //movimiento alfombra
-         if(dist (mouseX, mouseY, x + 39, y + 40) < 30 ){ 
-           libro = 100;
-         /*  mouseX > 921 && mouseX < 921 + 39 &&
-          mouseY > 40 && mouseY < 40 + 79 */
-         }
+       
           break;
         
 
@@ -332,8 +337,22 @@ function mousePressed() {
   
   
     }
+    //recoleccion de paginas
+    if (mouseX > 367 && mouseX < 409 && mouseY > 210 && mouseY < 267) {
+  recolectado = true;
+
+    }
+    if (mouseX > 922 && mouseX <   959 && mouseY > 43 && mouseY < 120) {
+      libro = !libro;
+    
+        }
+
+
+
+
   console.log(mouseX, mouseY);
   
+
   
   }
 
