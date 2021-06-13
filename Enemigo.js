@@ -3,7 +3,7 @@ class Enemigo {
     this.x = x;
     this.y = y;
     this.dir = dir;
-    this.vel = 10;
+    this.vel = 5;
     this.randomX = 0;
     this.randomDir = 0;
   }
