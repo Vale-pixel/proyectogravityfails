@@ -14,6 +14,9 @@ let vida = [];
 let tioStann = false;
 let mabell = false;
 let dipperr = false
+let x = 287;
+let y = 126;
+let libro = 50;
 
 function preload() {
   //pantallas
@@ -88,10 +91,15 @@ function draw() {
 
       image(cuarto, 0, 0);//pantalla cuarto dipper y mabel
 
-      ratonI.mostrar();
+     
       fill(0);
       textSize(36);
       text("1", 930, 98);
+
+      fill(66,41,24);
+      textSize(23);
+      text('Da click sobre el diario del misterio para recibir las instrucciones', 150, 27);
+
 
       //Pintar los personajes dependiendo la elección
 
@@ -120,12 +128,28 @@ function draw() {
       }
 
 
+    
+
+//alfombra y texto
+      image(alfombra, x,y);
+      
+      if(x < 287){
+        fill(255);
+        textSize(20);
+        text('acércate a las páginas para recolectarlas', 314, 481);
+
+      }  
+      //cualidades raton
+      ratonI.mostrar();
       ratonI.mover();
       ratonI.rebotar();
+    
 
-
-      image(alfombra, 287,126);
-      console.log(mouseX, mouseY);
+      if(libro < 50){
+        fill(255);
+        textSize(20);
+        text('Encuentra el elemento esencial para pasar de nivel no todo el camino será sencillo', 220, 481);
+      }
 
 
 
@@ -287,19 +311,34 @@ function mousePressed() {
       break;
 
     case 2:
-      if(mouseX > image(alfombra, 287,126) && mouseX < image(alfombra, 287,126) &&
-        mouseY > image(alfombra, 287,126) && mouseY < image(alfombra, 287,126)) {
-          image(alfombra,230, 115);
-
+    //movimiento alfombra
+     if(dist(mouseX, mouseY, x + 124, y + 124)< 150 ){ 
+       x = 120
+     }
       break;
+    
+      case 3:
+        //movimiento alfombra
+         if(dist (mouseX, mouseY, x + 39, y + 40) < 30 ){ 
+           libro = 100;
+         /*  mouseX > 921 && mouseX < 921 + 39 &&
+          mouseY > 40 && mouseY < 40 + 79 */
+         }
+          break;
+        
+
+        
+            
+  
+  
+    }
+  console.log(mouseX, mouseY);
+  
+  
   }
 
 
-  console.log(mouseX, mouseY);
 
-
-}
-}
 function keyPressed() {
 
   personaje.mover();
@@ -308,10 +347,5 @@ function keyPressed() {
 
 }
 
-function mouseDragged(){
-  if(image(alfombra, 287,126)){
-  image(alfombra, mouseX, mouseY)
-  return false;
-  }
-}
+
 
