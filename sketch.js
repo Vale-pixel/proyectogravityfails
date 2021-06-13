@@ -293,6 +293,7 @@ function draw() {
   }
 }
 
+
 function mousePressed() {
   //cambio de pantalla
   switch (pantalla) {
