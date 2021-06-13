@@ -100,6 +100,7 @@ function setup() {
 }
 
 function draw() {
+
   //pantallas con sus elementos
   switch (pantalla) {
     case 0:
