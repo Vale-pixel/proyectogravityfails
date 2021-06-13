@@ -1,21 +1,33 @@
 class ArmaP{
-    constructor(){
-        this.xArmaP = ArmaP;
-        this.yArmpaP = yArmpaP;
+    constructor(x, y){
+
+        this.x = x;
+        this.y = y;
         this.activo = true;
     }
 
 
     mostrar(){
-        image();
+        image(hacha,this.x, this.y);
+        this.mover();
 
+    }
+    
+
+    mostrarRayos(){
+        rect((this.x)+3,(this.y)-3,3,8);
+        this.mover();
     }
 
     mover(){
-        this.xarmaP --;
-        if(this.xArmaP > width){
+        this.x ++;
+        if(this.x > length){
             this.activo = false;
         }
+    }
+
+    estaActivo(){
+        return this.activo;
     }
 
 }

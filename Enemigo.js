@@ -1,89 +1,73 @@
 class Enemigo {
-    constructor(x,y,dir){
+  constructor(x, y, dir) {
     this.x = x;
     this.y = y;
     this.dir = dir;
+    this.vel = 10;
     this.randomX = 0;
     this.randomDir = 0;
-    
-}
-
-raton(){
-    
-    image(raton,this.x,this.y);
-    //this.especial();
-}
-mover(){
-    if(this.dir === 0){
-        this.x-=5;
-    }else{
-        this.x+=5;
+  }
+  mover() {
+    if (this.dir == 0) {
+      //abajo
+      this.y -= this.vel;
+    } else if (this.dir == 1) {
+      //arriba
+      this.y += this.vel;
+    } else if (this.dir == 2) {
+      //derecha
+      this.x += this.vel;
+    } else if (this.dir == 3) {
+      //izquierda
+      this.x -= this.vel;
+    } else if (this.dir == 4) {
+      //diagonal izquierda abajo
+      this.x -= this.vel;
+      this.y -= this.vel;
+    } else if (this.dir == 5) {
+      //diagonale derecha arriba
+      this.x += this.vel;
+      this.y += this.vel;
+    } else if (this.dir == 6) {
+      //diagonal izquierda arriba
+      this.x -= this.vel;
+      this.y += this.vel;
+    } else if (this.dir == 7) {
+      //diagonal dercha abajo
+      this.x += this.vel;
+      this.y -= this.vel;
     }
-    
-    this.y += this.randomDir;
-}
+  }
 
-rebotar(){
-    
-    this.randomDir = Math.floor(random(-1,2));
-    console.log("Funciona"+ this.randomDir);
-    if (this.randomDir == 0){
-        this.randomDir = -1;
+  rebotar() {
+    if (this.y >= 400) {
+      let nr = Math.random() * 3 + 1;
+
+      this.dir = nr == 1 ? 6 : nr == 2 ? 1 : 4;
+    } else if (this.y <= 40) {
+      let nr = Math.random() * 3 + 1;
+
+      this.dir = nr == 1 ? 7 : nr == 2 ? 4 : 6;
+    } else if (this.x <= 60) {
+      let nr = Math.random() * 3 + 2;
+
+      this.dir = nr == 1 ? 7 : nr == 2 ? 2 : 2;
+    } else if (this.x >= 940) {
+      let nr = Math.random() * 3 + 2;
+
+      this.dir = nr == 1 ? 7 : nr == 2 ? 2 : 6;
     }
+  }
+  verificarImpacto(x, y){ // además de marcarlo como muerto... retorna el valor para usarlo
+    if(x > this.x && x <(this.x + 46) && y > this.y && y < this.y + 30){        
+        this.muerto = true; // muere cuando lo tocan no?
+        return true;
     }
+    return false;
+  
+}
+estaMuerto(){
+    return this.muerto
 }
 
-/* especial(){
-    if (frameCount % 90 == 0) {
-        this.cambiarDeDireccion();
 }
-}
-cambiarDeDireccion(){
-    this.dir = int(random(4));
-}
-
-
-mover(){
-   
-    switch (this.dir) {
-        case 0:
-            this.y-=2;
-            break;
-        case 1:
-            this.y+=2;
-            break;
-        case 2:
-            this.x+=2;
-            break;
-        case 3:
-            this.x-=2;
-            break;
-    }
-    
-this.especial();
-}
-
-
-}
-
-/*
-
-rebotar(){
-    if(this.x<= 0){
-        console.log("izquierda")
-    this.dirX*=-1;
-    }
-    
-    if(this.x>= 1000){
-        console.log("derecha")
-    this.dirX*=-1;
-    }
-
-    if(this.y<= 10){
-        console.log("arriba")
-    this.dirY*=-1;
-    }
-}
-    */
-
- 

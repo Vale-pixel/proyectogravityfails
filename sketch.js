@@ -1,20 +1,52 @@
-let inicial, escogerP, cuarto, tienda, bosque, portal, pag_grande, diario_gran, gameO, winner, dipper, mabel,
-  tiostan, raton, muercie, abuela, abuelo, hombreTauro, gnomo, bill, rosa, hacha, paginas, alfombra, cinta, tronco,
-  fuegoazul, fuegorosa, corazon, linterna;
+let inicial,
+  escogerP,
+  cuarto,
+  tienda,
+  bosque,
+  portal,
+  pag_grande,
+  diario_gran,
+  gameO,
+  winner,
+  dipper,
+  mabel,
+  tiostan,
+  raton,
+  muercie,
+  abuela,
+  abuelo,
+  hombreTauro,
+  gnomo,
+  bill,
+  rosa,
+  hacha,
+  paginas,
+  alfombra,
+  cinta,
+  tronco,
+  fuegoazul,
+  fuegorosa,
+  corazon,
+  linterna;
 
-  let arregloA = [];
-let arregloB1 = [new Array(26)];
-let arregloB2 = [new Array(52)];
-
-let mapa = [];
-
-let pantalla = 2;
+let pantalla = 0;
 let presionado = false;
+let personaje;
 
-let enemigo = new Enemigo(500,50,1);
-let arma = new ArmaE;
+let ratonI = new Raton(500, 50, 1);
+let murcieI = new Murcielago(500, 50, 1);
+let arma = new ArmaE();
 
 let vida = [];
+
+let tioStann = false;
+let mabell = false;
+let dipperr = false;
+let x = 287;
+let y = 126;
+let libro = false;
+let recolectado = false;
+let nivel = "1";
 
 function preload() {
   //pantallas
@@ -52,133 +84,303 @@ function preload() {
   fuegorosa = loadImage("/assets/0fuegorosa0.png");
   corazon = loadImage("/assets/CorazónVida.png");
   linterna = loadImage("/assets/0linterna0.png");
-
-
 }
+
 function setup() {
   createCanvas(1000, 500);
 
-  for (let i = 0; i < 26; i++) {
-    mapa.push(new Array(26));
-    for (let j = 0; j < 52; j++) {
-      mapa.push(new Array(52));
-    }
-  }
-  for (let fil = 0; fil < 26; fil++) {
-    for (let col = 0; col < 52; col++) {
-      mapa[fil][col] = 0;
-    }
-
-    console.log(mapa)
-  }
-
+  //arreglo vidas
   for (let i = 0; i < 4; i++) {
-    let x = (i*76)+40;
+    let x = i * 76 + 40;
     let y = 40;
-    vida.push(new Vida(x,y));
+    vida.push(new Vida(x, y));
   }
-    
+
+  personaje = new Personaje();
 }
 
 function draw() {
-  for (let fil = 0; fil < 26; fil++) {
-    for (let col = 0; col < 52; col++) {
-      if (mapa[fil][col] === 0) {
-        fill(255);
-      } else if (mapa[fil][col] === 1) {
-        fill(0);
-      }
-      stroke(0);
-      rect(col * 22, fil * 22, 22, 22);
-    }
-    
-  }
 
+  ellipse(20,20,20,20);
 
+  //pantallas con sus elementos
   switch (pantalla) {
-    case (0):
-      image(inicial, 0, 0);
+    case 0:
+      image(inicial, 0, 0); //pantalla inicio
       break;
-    case (1):
-      image(escogerP, 0, 0);
+
+    case 1:
+      image(escogerP, 0, 0); //pantalla escoger personaje
       stroke(100);
       fill(255);
       textSize(15);
-      text("CON UN CLICK", 438, 142)
+      text("CON UN CLICK", 438, 142);
       break;
-    case (2):
-      
-      image(cuarto, 0, 0);
 
-      enemigo.raton();
-      enemigo.mover();
+    case 2:
+      image(cuarto, 0, 0); //pantalla cuarto dipper y mabel
+
+      fill(0);
+      textSize(36);
+      text(nivel, 930, 98);
+
+      fill(66, 41, 24);
+      textSize(23);
+      text(
+        "Da click sobre el diario del misterio para recibir las instrucciones",
+        150,
+        27
+      );
+
+      //Pintar los personajes dependiendo la elección
+
+      //Tio Stan
+      if (tioStann === true) {
+        personaje.mostrarTiostan();
+      }
+
+      //Mabel
+      if (mabell === true) {
+        personaje.mostrarMabel();
+      }
+
+      //Dipper
+      if (dipperr === true) {
+        personaje.mostrarDipper();
+      }
+
+      //arreglo de vidas
+      for (let i = 0; i < vida.length; i++) {
+        vida[i].mostrar();
+      }
 
       for (let i = 0; i < vida.length; i++) {
         vida[i].mostrar();
       }
-  
-        if (enemigo.x <= 0){
-          console.log("izquierda");
-          enemigo.rebotar();
-        }
-      
-      
-        if (enemigo.x >= 900){
-          console.log("derecha");
-          enemigo.rebotar();
-        }
 
-        if (enemigo.y <= 0){
-          console.log("arriba");
-          enemigo.rebotar(); 
-        }
+      //alfombra y texto
+      image(alfombra, x, y);
 
-      
-        if (enemigo.y >= 400){
-          console.log("abajo");
-          enemigo.rebotar();
+      if (x < 287) {
+        fill(255);
+        textSize(20);
+        text("Da click a las páginas para recolectarlas", 314, 481);
+      }
+      //cualidades raton
+      if (nivel === "1") {
+        ratonI.mostrar();
+        ratonI.mover();
+        ratonI.rebotar();
+      } else if (nivel === "2") {
+        murcieI.mostrar();
+        murcieI.mover();
+        murcieI.rebotar();
+      }
+      if (libro) {
+        fill(255);
+        textSize(20);
+        if (libro) {
+          text(
+            "Encuentra el elemento esencial para pasar de nivel no todo el camino será sencillo",
+            120,
+            481
+          );
+        } else {
         }
-      
+      }
+
+      if (recolectado) {
+        image(paginas, 907, 135);
+        nivel = "2";
+        x = 287;
+      }
+
       break;
-    case (3):
-      image(pag_grande, 0, 0);
+    case 3:
+      image(pag_grande, 0, 0); //pantalla de codigo
+      fill(0);
+      textSize(36);
+      text("2", 930, 98);
       break;
-    case (4):
-      image(diario_gran, 0, 0);
+    case 4:
+      image(diario_gran, 0, 0); //pantalla ingresar codigo
+      fill(0);
+      textSize(36);
+      text("2", 930, 98);
       break;
-    case (5):
-      image(tienda, 0, 0);
+    case 5:
+      image(tienda, 0, 0); //pantalla tienda embrujada
+      personaje.mostrar();
+      fill(0);
+      textSize(36);
+      text("3", 930, 98);
+
+      //Pintar los personajes dependiendo la elección
+
+      //Tio Stan
+      if (tioStann === true) {
+        personaje.mostrarTiostan();
+      }
+
+      //Mabel
+      if (mabell === true) {
+        personaje.mostrarMabel();
+      }
+
+      //Dipper
+      if (dipperr === true) {
+        personaje.mostrarDipper();
+      }
       break;
-    case (6):
-      image(bosque, 0, 0);
+
+    case 6:
+      image(bosque, 0, 0); //pantalla bosque
+      personaje.mostrar();
+      fill(0);
+      textSize(36);
+      text("5", 930, 98);
+
+      //Pintar los personajes dependiendo la elección
+
+      //Tio Stan
+      if (tioStann === true) {
+        personaje.mostrarTiostan();
+      }
+
+      //Mabel
+      if (mabell === true) {
+        personaje.mostrarMabel();
+      }
+
+      //Dipper
+      if (dipperr === true) {
+        personaje.mostrarDipper();
+      }
       break;
-    case (7):
-      image(portal, 0, 0);
+
+    case 7:
+      image(portal, 0, 0); //pantalla laboratorio y portal
+      personaje.mostrar();
+      fill(0);
+      textSize(36);
+      text("6", 930, 98);
+
+      //Pintar los personajes dependiendo la elección
+
+      //Tio Stan
+      if (tioStann === true) {
+        personaje.mostrarTiostan();
+      }
+
+      //Mabel
+      if (mabell === true) {
+        personaje.mostrarMabel();
+      }
+
+      //Dipper
+      if (dipperr === true) {
+        personaje.mostrarDipper();
+      }
       break;
-    case (8):
-      image(gameO, 0, 0);
+
+    case 8:
+      image(gameO, 0, 0); //Pantalla Game Over
       break;
-    case (9):
-      image(winner, 0, 0);
+
+    case 9:
+      image(winner, 0, 0); //Pantalla ganador
       break;
   }
-  
-
 }
 
-function mouseClicked() {
-  if (mouseX > 402 && mouseX < 402 + 176 && mouseY > 440 && mouseY < 440 + 39) {
-    if (pantalla === 0) {
-      presionado = !presionado;
-      pantalla = 1;
-    }
+function mousePressed() {
+  //cambio de pantalla
+  switch (pantalla) {
+    case 0: //Pantalla de inicio
+      //Botón de comenzar
+      if (
+        mouseX > 402 &&
+        mouseX < 402 + 176 &&
+        mouseY > 440 &&
+        mouseY < 440 + 39
+      ) {
+        pantalla = 1;
+      }
+      break;
+
+    case 1: //Pantalla de elección de personaje
+      //Botón Tio Stan
+      if (
+        mouseX > 56 &&
+        mouseX < 56 + 144 &&
+        mouseY > 224 &&
+        mouseY < 224 + 205
+      ) {
+        tioStann = true;
+        personaje.disparar();
+        console.log("disparo");
+      }
+
+      //Botón mabel
+      if (
+        mouseX > 779 &&
+        mouseX < 779 + 144 &&
+        mouseY > 224 &&
+        mouseY < 224 + 205
+      ) {
+        mabell = true;
+        personaje.disparar();
+        console.log("disparo");
+      }
+
+      //Botón dipper
+      if (
+        mouseX > 426 &&
+        mouseX < 426 + 144 &&
+        mouseY > 224 &&
+        mouseY < 224 + 205
+      ) {
+        dipperr = true;
+        personaje.disparar();
+
+        console.log("disparo");
+      }
+
+      //boton de comenzar
+      if (
+        mouseX > 402 &&
+        mouseX < 402 + 176 &&
+        mouseY > 440 &&
+        mouseY < 440 + 39
+      ) {
+        pantalla = 2;
+      }
+
+      break;
+
+    case 2:
+      //movimiento alfombra
+      if (dist(mouseX, mouseY, x + 124, y + 124) < 150) {
+        x = 120;
+      }
+      break;
+
+    case 3:
+      break;
   }
-  if (mouseX > 402 && mouseX < 402 + 176 && mouseY > 440 && mouseY < 440 + 39) {
-    if (pantalla === 1) {
-      presionado = !presionado;
-      pantalla = 2;
-    }
+  //recoleccion de paginas
+  if (mouseX > 367 && mouseX < 409 && mouseY > 210 && mouseY < 267) {
+    recolectado = true;
   }
+  if (mouseX > 922 && mouseX < 959 && mouseY > 43 && mouseY < 120) {
+    libro = !libro;
+  }
+
   console.log(mouseX, mouseY);
 }
 
+function keyPressed() {
+  personaje.mover();
+
+  console.log(personaje.mover);
+}
