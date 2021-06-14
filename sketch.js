@@ -331,6 +331,7 @@ function draw() {
 
       mostrarVidas();
 
+      //cualidades abuelos
       abuelaF.mostrar();
       abuelaF.mover();
       abuelaF.rebotar();
@@ -377,9 +378,82 @@ function draw() {
           logolpean = false;
         }, 500);
       }
+
       break;
 
     case 5:
+      image(tienda, 0, 0); //pantalla tienda embrujada
+      fill(0);
+      textSize(36);
+      text("4", 935, 98);
+
+      image(paginas, 924, 138); //paginas recolectadas
+      image(cinta, 928, 199); //cinta del tiempo recolectada
+
+      //Pintar los personajes dependiendo la elección
+
+      //Tio Stan
+      if (tioStann === true) {
+        personaje.mostrarTiostan();
+      }
+
+      //Mabel
+      if (mabell === true) {
+        personaje.mostrarMabel();
+      }
+
+      //Dipper
+      if (dipperr === true) {
+        personaje.mostrarDipper();
+      }
+
+      //cualidades abuelos
+      abuelaF.mostrar();
+      abuelaF.mover();
+      abuelaF.rebotar();
+
+      abueloF.mostrar();
+      abueloF.mover();
+      abueloF.rebotar();
+
+      //intrucciones del diario
+      if (libro) {
+        noStroke();
+        fill(255);
+        rect(218, 460, 600, 30);
+
+        stroke(15);
+        fill(0);
+        textSize(15);
+        if (libro) {
+          text(
+            "Llega a la salida para pasar de nivel ¡No dejes que los abuelos te toquen!",
+            239,
+            481
+          );
+        }
+      }
+
+      //perder vida con contacto abuela
+      if (abuelaF.verificarImpacto(personaje.x, personaje.y) && !logolpean) {
+        logolpean = true;
+        personaje.reducirVida();
+      }
+      if (logolpean) {
+        setTimeout(() => {
+          logolpean = false;
+        }, 500);
+      }
+      //perder vida con contacto abuelo
+      if (abueloF.verificarImpacto(personaje.x, personaje.y) && !logolpean) {
+        logolpean = true;
+        personaje.reducirVida();
+      }
+      if (logolpean) {
+        setTimeout(() => {
+          logolpean = false;
+        }, 500);
+      }
       break;
 
     case 6:
@@ -388,6 +462,9 @@ function draw() {
       fill(0);
       textSize(36);
       text("5", 930, 98);
+
+      image(paginas, 924, 138); //paginas recolectadas
+      image(cinta, 928, 199); //cinta del tiempo recolectada
 
       //Pintar los personajes dependiendo la elección
 
@@ -416,6 +493,25 @@ function draw() {
       hombreTauroI.mostrarB();
       hombreTauroI.moverB();
       hombreTauroI.rebotarB();
+
+      //intrucciones del diario
+      if (libro) {
+        noStroke();
+        fill(255);
+        rect(218, 460, 600, 30);
+
+        stroke(15);
+        fill(0);
+        textSize(15);
+        if (libro) {
+          text(
+            "Llega a la cabaña del misterio ¡usa tus armas (z-x) para derrotar a los enemigos!",
+            200,
+            481
+          );
+        }
+      }
+
       break;
 
     case 7:
@@ -424,6 +520,9 @@ function draw() {
       fill(0);
       textSize(36);
       text("6", 930, 98);
+
+      image(paginas, 924, 138); //paginas recolectadas
+      image(cinta, 928, 199); //cinta del tiempo recolectada
 
       //Pintar los personajes dependiendo la elección
 
@@ -442,6 +541,25 @@ function draw() {
         personaje.mostrarDipper();
       }
       mostrarVidas();
+
+      //intrucciones del diario
+      if (libro) {
+        noStroke();
+        fill(255);
+        rect(218, 460, 600, 30);
+
+        stroke(15);
+        fill(0);
+        textSize(15);
+        if (libro) {
+          text(
+            "Llega hasta el ¡usa tus armas (z-x) para derrotar a los enemigos!",
+            200,
+            481
+          );
+        }
+      }
+
       break;
     case 8:
       image(gameO, 0, 0); //Pantalla Game Over
@@ -526,11 +644,11 @@ function mousePressed() {
       break;
   }
   //recoleccion de paginas
-  if (mouseX > 367 && mouseX < 409 && mouseY > 210 && mouseY < 267) {
+  if (mouseX > 367 && mouseX < 390 && mouseY > 210 && mouseY < 240) {
     recolectadoP = true;
   }
   //recoleccion de vida
-  if (mouseX > 867 && mouseX < 903 && mouseY > 234 && mouseY < 271) {
+  if (mouseX > 867 && mouseX < 887 && mouseY > 234 && mouseY < 254) {
     recolectadaV = true;
     personaje.vida += 1;
   }
