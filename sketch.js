@@ -407,9 +407,6 @@ function draw() {
       break;
     case 8:
      image(gameO, 0, 0); //Pantalla Game Over
-      /* if (presionado){
-        pantalla=0;
-      }*/
       break;
 
      case 9:
