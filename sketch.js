@@ -53,7 +53,7 @@ let dipperr = false;
 let logolpean = false;
 let presionado = false;
 
-let pantalla = 4;
+let pantalla = 0;
 let x = 287;
 let y = 126;
 let dx = 855;
@@ -65,6 +65,8 @@ let ArregloB = new Array(48);
 //validar mapa en la matriz
 let pCol;
 let pFil;
+let xPos = 30;
+let yPos = 20;
 
 let mapa = [];
 function preload() {
@@ -422,6 +424,7 @@ function draw() {
           rect(col * 20, fil * 20, 20, 20);
         }
       }
+      ellipse(xPos, yPos, 10, 10);
 
       break;
 
@@ -603,28 +606,28 @@ function keyPressed() {
     //fil-y=1   col-x=2
     switch (key) {
       case "A":
-        if (personaje.mover && pCol - 1 >= 0) {
+        if (personaje && pCol - 1 >= 0) {
           if (mapa[pFil][pCol - 1] === 0) {
             pCol -= 1;
           }
         }
         break;
       case "a":
-        if (personaje.mover && pCol - 1 >= 0) {
+        if (personaje && pCol - 1 >= 0) {
           if (mapa[pFil][pCol - 1] === 0) {
             pCol -= 1;
           }
         }
         break;
       case "D":
-        if (personaje.mover && pCol + 1 < 10) {
+        if (personaje && pCol + 1 < 10) {
           if (mapa[pFil][pCol + 1] === 0) {
             pCol += 1;
           }
         }
         break;
       case "d":
-        if (personaje.mover && pCol + 1 < 10) {
+        if (personaje && pCol + 1 < 10) {
           if (mapa[pFil][pCol + 1] === 0) {
             pCol += 1;
           }
@@ -632,28 +635,28 @@ function keyPressed() {
         break;
 
       case "W":
-        if (personaje.mover && pFil - 1 >= 0) {
+        if (personaje && pFil - 1 >= 0) {
           if (mapa[pFil - 1][pCol] === 0) {
             pFil -= 1;
           }
         }
         break;
       case "w":
-        if (personaje.mover && pFil - 1 >= 0) {
+        if (personaje && pFil - 1 >= 0) {
           if (mapa[pFil - 1][pCol] === 0) {
             pFil -= 1;
           }
         }
         break;
       case "S":
-        if (personaje.mover && pFil + 1 <= 10) {
+        if (personaje && pFil + 1 <= 10) {
           if (mapa[pFil + 1][pCol] === 0) {
             pFil += 1;
           }
         }
         break;
       case "s":
-        if (personaje.mover && pFil + 1 <= 10) {
+        if (personaje && pFil + 1 <= 10) {
           if (mapa[pFil + 1][pCol] === 0) {
             pFil += 1;
           }
