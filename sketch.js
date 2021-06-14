@@ -107,10 +107,20 @@ function draw() {
   if (personaje.vida === 0) {
     pantalla = 8;
   }
+
+ if (presionado === true){
+   location.reload();
+ }
+  
+
+  
+  
   //pantallas con sus elementos
   switch (pantalla) {
     case 0:
       image(inicial, 0, 0); //pantalla inicio
+      
+    
       break;
 
     case 1:
@@ -290,7 +300,7 @@ function draw() {
       if (logolpean) {
         setTimeout(() => {
           logolpean = false;
-        }, 500);
+        }, 1000);
       }
 
       break;
@@ -407,12 +417,14 @@ function draw() {
       break;
     case 8:
      image(gameO, 0, 0); //Pantalla Game Over
+     
       break;
 
      case 9:
       image(winner, 0, 0); //Pantalla ganador
       break;
 }
+
   }
 
 
@@ -487,6 +499,7 @@ function mousePressed() {
         dx = 790;
       }
       break;
+        
   }
   //recoleccion de paginas
   if (mouseX > 367 && mouseX < 409 && mouseY > 210 && mouseY < 267) {
@@ -502,15 +515,20 @@ function mousePressed() {
     libro = !libro;
   }
 
+
+if (pantalla === 8){
+  if (mouseX > 0 && mouseX < 1000 && mouseY > 0 && mouseY < 500) {
+    console.log("melo");
+    presionado = true;
+  }
+}
+
   console.log(mouseX, mouseY);
 }
 //cambio de gamme over a pantalla inicial
 function mouseClicked(){
-  if(pantalla===8){
-    console.log("epa");
-    presionado=true;
-    pantalla=2;
-}}
+  
+ }
 
 function keyPressed() {
   personaje.mover(); //movimiento personaje

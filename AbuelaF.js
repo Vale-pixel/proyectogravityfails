@@ -18,7 +18,7 @@ class AbuelaF extends Enemigo{
           this.x > personaje.x &&
           this.x < personaje.x + 78 &&
           this.y > personaje.y &&
-          this.y < personaje.y + 117
+          this.y < personaje.y + 200
         ) {
           console.log("entro");
           this.muerto = true; // muere cuando lo tocan no?
