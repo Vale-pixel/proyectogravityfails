@@ -1,5 +1,7 @@
-class AbuelaF {
-    constructor(x, y, dir){
+class AbuelaF extends Enemigo{
+  constructor(x, y, dir,vel) {
+    super(x, y, dir, vel);
+  
         this.x = x;
         this.y = y;
         this.dir = dir;

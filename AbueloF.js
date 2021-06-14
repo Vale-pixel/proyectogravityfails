@@ -1,8 +1,6 @@
 class AbueloF extends Enemigo {
     constructor(x, y, dir,vel) {
       super(x, y, dir, vel);
-
-
     }
   
     mostrar() {
