@@ -11,6 +11,7 @@ let inicial,
   dipper,
   mabel,
   tiostan,
+  muro,
   raton,
   muercie,
   abuela,
@@ -53,7 +54,7 @@ let dipperr = false;
 let logolpean = false;
 let presionado = false;
 
-let pantalla = 4;
+let pantalla = 0;
 let x = 287;
 let y = 126;
 let dx = 855;
@@ -65,6 +66,8 @@ let ArregloB = new Array(48);
 //validar mapa en la matriz
 let pCol;
 let pFil;
+let xPos = 30;
+let yPos = 20;
 
 let mapa = [];
 function preload() {
@@ -104,6 +107,7 @@ function preload() {
   corazon = loadImage("/assets/CorazónVida.png");
   linterna = loadImage("/assets/0linterna0.png");
   caja = loadImage("/assets/Cajita-8.png");
+  muro = loadImage("/assets/0muro0.png");
 }
 
 function setup() {
@@ -138,10 +142,16 @@ function draw() {
   if (personaje.vida === 0) {
     pantalla = 8;
   }
+
+  if (presionado === true) {
+    location.reload();
+  }
+
   //pantallas con sus elementos
   switch (pantalla) {
     case 0:
       image(inicial, 0, 0); //pantalla inicio
+
       break;
 
     case 1:
@@ -330,7 +340,7 @@ function draw() {
       if (logolpean) {
         setTimeout(() => {
           logolpean = false;
-        }, 500);
+        }, 1000);
       }
 
       break;
@@ -424,6 +434,7 @@ function draw() {
           rect(col * 20, fil * 20, 20, 20);
         }
       }
+      ellipse(xPos, yPos, 10, 10);
 
       break;
 
@@ -609,6 +620,7 @@ function draw() {
       break;
     case 8:
       image(gameO, 0, 0); //Pantalla Game Over
+
       break;
 
     case 9:
@@ -703,9 +715,19 @@ function mousePressed() {
     libro = !libro;
   }
 
+  if (pantalla === 8) {
+    if (mouseX > 0 && mouseX < 1000 && mouseY > 0 && mouseY < 500) {
+      console.log("melo");
+      presionado = true;
+    }
+  }
+
   console.log(mouseX, mouseY);
 }
 //cambio de gamme over a pantalla inicial
+
+function mouseClicked() {}
+
 function mouseClicked() {
   if (pantalla === 8) {
     console.log("epa");
@@ -721,28 +743,28 @@ function keyPressed() {
     //fil-y=1   col-x=2
     switch (key) {
       case "A":
-        if (personaje.mover && pCol - 1 >= 0) {
+        if (personaje && pCol - 1 >= 0) {
           if (mapa[pFil][pCol - 1] === 0) {
             pCol -= 1;
           }
         }
         break;
       case "a":
-        if (personaje.mover && pCol - 1 >= 0) {
+        if (personaje && pCol - 1 >= 0) {
           if (mapa[pFil][pCol - 1] === 0) {
             pCol -= 1;
           }
         }
         break;
       case "D":
-        if (personaje.mover && pCol + 1 < 10) {
+        if (personaje && pCol + 1 < 10) {
           if (mapa[pFil][pCol + 1] === 0) {
             pCol += 1;
           }
         }
         break;
       case "d":
-        if (personaje.mover && pCol + 1 < 10) {
+        if (personaje && pCol + 1 < 10) {
           if (mapa[pFil][pCol + 1] === 0) {
             pCol += 1;
           }
@@ -750,28 +772,28 @@ function keyPressed() {
         break;
 
       case "W":
-        if (personaje.mover && pFil - 1 >= 0) {
+        if (personaje && pFil - 1 >= 0) {
           if (mapa[pFil - 1][pCol] === 0) {
             pFil -= 1;
           }
         }
         break;
       case "w":
-        if (personaje.mover && pFil - 1 >= 0) {
+        if (personaje && pFil - 1 >= 0) {
           if (mapa[pFil - 1][pCol] === 0) {
             pFil -= 1;
           }
         }
         break;
       case "S":
-        if (personaje.mover && pFil + 1 <= 10) {
+        if (personaje && pFil + 1 <= 10) {
           if (mapa[pFil + 1][pCol] === 0) {
             pFil += 1;
           }
         }
         break;
       case "s":
-        if (personaje.mover && pFil + 1 <= 10) {
+        if (personaje && pFil + 1 <= 10) {
           if (mapa[pFil + 1][pCol] === 0) {
             pFil += 1;
           }
