@@ -18,9 +18,10 @@ let inicial,
   abuelo,
   hombreTauro,
   gnomo,
+  hachader,
+  hachaizq,
   bill,
   rosa,
-  hacha,
   paginas,
   alfombra,
   cinta,
@@ -34,6 +35,7 @@ let vida = [];
 
 let personaje;
 let estantes;
+let enemigoB = [];
 
 let arma = new ArmaE();
 let ratonI = new Raton(500, 50, 1);
@@ -93,7 +95,8 @@ function preload() {
   rosa = loadImage("/assets/0rosa0.png");
 
   //elementos
-  hacha = loadImage("/assets/hacha.png");
+  hachader = loadImage("/assets/hachaDer.png");
+  hachader = loadImage("/assets/hachaIzq.png");
   paginas = loadImage("/assets/PaginasDelLibro-8.png");
   alfombra = loadImage("/assets/alfombra.png");
   cinta = loadImage("/assets/0cinta0.png");
@@ -109,6 +112,7 @@ function preload() {
 function setup() {
   createCanvas(1000, 500);
   personaje = new Personaje();
+  enemigoB = new EnemigoB();
 }
 
 function draw() {
@@ -239,6 +243,21 @@ function draw() {
           logolpean = false;
         }, 500);
       }
+
+      for (
+        let index = 0;
+        index < personaje.getTiro().length || personaje.getTiroR().length;
+        index++
+      ) {
+        let armaX = personaje.getTiro()[index].x; // obtenemosX
+        let armaY = personaje.getTiro()[index].y; // obtenemosY
+        if (enemigoB[i].verificarImpactoE(armaX, armaY)) {
+          // verificamos el contacto
+          enemigoB.splice(i, 1); // eliminamos
+          break; // finalizamos el ciclo
+        }
+      }
+
       break;
     case 3:
       image(cuarto, 0, 0); //pantalla cuarto dipper y mabel
@@ -524,7 +543,6 @@ function draw() {
       textSize(36);
       text("5", 930, 98);
 
-      image(corazon, px, py); //corazon
       image(paginas, 924, 138); //paginas recolectadas
       image(cinta, 927, 205); //cinta del tiempo
 
@@ -573,17 +591,6 @@ function draw() {
             481
           );
         }
-      }
-      //adquirir vida
-      if (dist(personaje.x, personaje.y, 197, 314) < 20) {
-        recolectadaV2 = true;
-      }
-
-      if (recolectadaV2) {
-        personaje.vida += 1;
-
-        px = 1010;
-        py = 510;
       }
 
       break;
@@ -746,7 +753,7 @@ function keyPressed() {
 }
 
 function mostrarVidas() {
-  for (let i = 0; i < personaje.vida <= 6; i++) {
+  for (let i = 0; i < personaje.vida; i++) {
     let x1 = i * 76 + 40;
     let y1 = 40;
     // vida.push(new Vida(x, y));

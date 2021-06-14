@@ -5,7 +5,7 @@ class Personaje {
 
     this.armaP = [];
     this.armaR = [];
-    this.enemigo = [];
+    this.enemigoB = [];
 
     this.vida = 4;
   }
@@ -28,10 +28,6 @@ class Personaje {
   arregloArma() {
     for (let i = 0; i < this.armaP.length; i++) {
       this.armaP[i].mostrar();
-      this.removerTiroInactivo();
-      this.removerEnemigo();
-    }
-    for (let i = 0; i < this.armaR.length; i++) {
       this.armaR[i].mostrarRayos();
       this.removerTiroInactivo();
       this.removerEnemigo();
@@ -44,15 +40,20 @@ class Personaje {
     this.armaR.push(new ArmaP(this.x, this.y));
   }
 
-  traerTiro() {
+  getTiro() {
     return this.armaP;
   }
 
+  getTiroR() {
+    return this.armaR;
+  }
+
   removerTiroInactivo() {
-    for (let i = 0; i < this.armaP.lenght; i++) {
-      if (!this.armaP[i].estaActivo()) {
+    for (let i = 0; i < this.armaP.lenght || this.armaR.length; i++) {
+      if (!this.armaP[i].estaActivo() || !this.armaR[i].estaActivo()) {
         //remover
         this.armaP.splice(i, 1);
+        this.armaR.splice(i, 1);
         break;
       }
     }
@@ -92,37 +93,37 @@ class Personaje {
   dispararGeneral() {
     switch (key) {
       case "X":
-        if (pantalla === 6 && 7) {
+        if (pantalla === 2) {
           this.disparar();
         }
         break;
       case "x":
-        if (pantalla === 6 && 7) {
+        if (pantalla === 2) {
           this.disparar();
         }
         break;
       case "Z":
-        if (pantalla === 6 && 7) {
+        if (pantalla === 2) {
           this.dispararRayos();
         }
         break;
       case "z":
-        if (pantalla === 6 && 7) {
+        if (pantalla === 2) {
           this.dispararRayos();
         }
         break;
     }
   }
 
-  traerEnemigo() {
-    this.enemigo.push(new Enemigo(raton));
+  bringEnemigoRosa() {
+    this.enemigoB.push(new Rosa());
   }
 
   removerEnemigo() {
-    for (let i = 0; i < this.enemigo.lenght; i++) {
-      if (!this.enemigo[i].estaMuertoE()) {
+    for (let i = 0; i < this.enemigoB.lenght; i++) {
+      if (!this.enemigoB[i].estaMuerto()) {
         //remove
-        this.enemigo.splice(i, 1);
+        this.enemigoB.splice(i, 1);
         break;
       }
     }
