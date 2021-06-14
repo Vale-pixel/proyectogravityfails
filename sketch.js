@@ -300,7 +300,6 @@ function draw() {
       textSize(36);
       text("3", 935, 98);
 
-      image(corazon, 918, 212); //corazon recolectado
       image(paginas, 922, 135); //paginas recolectadas
 
       //Pintar los personajes dependiendo la elección
@@ -407,8 +406,8 @@ function draw() {
       mostrarVidas();
       break;
     case 8:
-     /* image(gameO, 0, 0); //Pantalla Game Over
-      if (presionado){
+     image(gameO, 0, 0); //Pantalla Game Over
+      /* if (presionado){
         pantalla=0;
       }*/
       break;
