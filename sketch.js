@@ -11,6 +11,7 @@ let inicial,
   dipper,
   mabel,
   tiostan,
+  muro,
   raton,
   muercie,
   abuela,
@@ -106,6 +107,7 @@ function preload() {
   corazon = loadImage("/assets/CorazónVida.png");
   linterna = loadImage("/assets/0linterna0.png");
   caja = loadImage("/assets/Cajita-8.png");
+  muro = loadImage("/assets/0muro0.png");
 }
 
 function setup() {
@@ -141,19 +143,15 @@ function draw() {
     pantalla = 8;
   }
 
- if (presionado === true){
-   location.reload();
- }
-  
+  if (presionado === true) {
+    location.reload();
+  }
 
-  
-  
   //pantallas con sus elementos
   switch (pantalla) {
     case 0:
       image(inicial, 0, 0); //pantalla inicio
-      
-    
+
       break;
 
     case 1:
@@ -621,21 +619,15 @@ function draw() {
 
       break;
     case 8:
-
-     image(gameO, 0, 0); //Pantalla Game Over
-     
+      image(gameO, 0, 0); //Pantalla Game Over
 
       break;
 
     case 9:
       image(winner, 0, 0); //Pantalla ganador
       break;
-
-}
-
-
   }
-
+}
 
 function mousePressed() {
   //cambio de pantalla
@@ -708,7 +700,6 @@ function mousePressed() {
         dx = 790;
       }
       break;
-        
   }
   //recoleccion de paginas
   if (mouseX > 367 && mouseX < 390 && mouseY > 210 && mouseY < 240) {
@@ -724,21 +715,18 @@ function mousePressed() {
     libro = !libro;
   }
 
-
-if (pantalla === 8){
-  if (mouseX > 0 && mouseX < 1000 && mouseY > 0 && mouseY < 500) {
-    console.log("melo");
-    presionado = true;
+  if (pantalla === 8) {
+    if (mouseX > 0 && mouseX < 1000 && mouseY > 0 && mouseY < 500) {
+      console.log("melo");
+      presionado = true;
+    }
   }
-}
 
   console.log(mouseX, mouseY);
 }
 //cambio de gamme over a pantalla inicial
 
-function mouseClicked(){
-  
- }
+function mouseClicked() {}
 
 function mouseClicked() {
   if (pantalla === 8) {
@@ -747,7 +735,6 @@ function mouseClicked() {
     pantalla = 2;
   }
 }
-
 
 function keyPressed() {
   personaje.mover(); //movimiento personaje
