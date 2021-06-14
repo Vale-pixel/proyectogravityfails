@@ -53,12 +53,20 @@ let dipperr = false;
 let logolpean = false;
 let presionado = false;
 
-let pantalla = 0;
+let pantalla = 4;
 let x = 287;
 let y = 126;
 let dx = 855;
 let dy = 213;
+//definir arreglo para mapa
+let ArregloA = new Array(23);
+let ArregloB = new Array(48);
 
+//validar mapa en la matriz
+let pCol;
+let pFil;
+
+let mapa = [];
 function preload() {
   //pantallas
   inicial = loadImage("/assets/Pantalla inicial-8.png");
@@ -101,6 +109,29 @@ function preload() {
 function setup() {
   createCanvas(1000, 500);
   personaje = new Personaje();
+  console.log(personaje);
+
+  //hacer arreglo de arreglos
+  for (let i = 0; i < 23; i++) {
+    mapa.push(new Array(23));
+  }
+  for (let i = 0; i < 48; i++) {
+    mapa.push(new Array(48));
+  }
+
+  //asignar valores iniciales
+  for (let fil = 0; fil < 23; fil++) {
+    for (let col = 0; col < 48; col++) {
+      mapa[fil][col] = 0;
+    }
+  }
+  console.log(mapa);
+  //fil= y, col= x
+  mapa[1][2] = 1;
+  mapa[9][5] = 1;
+  mapa[9][6] = 1;
+  mapa[9][7] = 1;
+  console.log(mapa);
 }
 
 function draw() {
@@ -332,6 +363,7 @@ function draw() {
       mostrarVidas();
 
       //cualidades abuelos
+      /*
       abuelaF.mostrar();
       abuelaF.mover();
       abuelaF.rebotar();
@@ -339,6 +371,7 @@ function draw() {
       abueloF.mostrar();
       abueloF.mover();
       abueloF.rebotar();
+*/
 
       //intrucciones del diario
       if (libro) {
@@ -377,6 +410,19 @@ function draw() {
         setTimeout(() => {
           logolpean = false;
         }, 500);
+      }
+
+      //pintar valores
+      for (let fil = 1; fil < 23; fil++) {
+        for (let col = 2; col < 48; col++) {
+          if (mapa[fil][col] === 0) {
+            noFill();
+          } else if (mapa[fil][col] == 1) {
+            fill(0);
+          }
+          stroke(0);
+          rect(col * 20, fil * 20, 20, 20);
+        }
       }
 
       break;
@@ -659,10 +705,80 @@ function mousePressed() {
 
   console.log(mouseX, mouseY);
 }
+//cambio de gamme over a pantalla inicial
+function mouseClicked() {
+  if (pantalla === 8) {
+    console.log("epa");
+    presionado = true;
+    pantalla = 2;
+  }
+}
 
 function keyPressed() {
   personaje.mover(); //movimiento personaje
   personaje.dispararGeneral(); //disparos de hacha y rayos z x
+  if (pantalla === 4) {
+    //fil-y=1   col-x=2
+    switch (key) {
+      case "A":
+        if (personaje.mover && pCol - 1 >= 0) {
+          if (mapa[pFil][pCol - 1] === 0) {
+            pCol -= 1;
+          }
+        }
+        break;
+      case "a":
+        if (personaje.mover && pCol - 1 >= 0) {
+          if (mapa[pFil][pCol - 1] === 0) {
+            pCol -= 1;
+          }
+        }
+        break;
+      case "D":
+        if (personaje.mover && pCol + 1 < 10) {
+          if (mapa[pFil][pCol + 1] === 0) {
+            pCol += 1;
+          }
+        }
+        break;
+      case "d":
+        if (personaje.mover && pCol + 1 < 10) {
+          if (mapa[pFil][pCol + 1] === 0) {
+            pCol += 1;
+          }
+        }
+        break;
+
+      case "W":
+        if (personaje.mover && pFil - 1 >= 0) {
+          if (mapa[pFil - 1][pCol] === 0) {
+            pFil -= 1;
+          }
+        }
+        break;
+      case "w":
+        if (personaje.mover && pFil - 1 >= 0) {
+          if (mapa[pFil - 1][pCol] === 0) {
+            pFil -= 1;
+          }
+        }
+        break;
+      case "S":
+        if (personaje.mover && pFil + 1 <= 10) {
+          if (mapa[pFil + 1][pCol] === 0) {
+            pFil += 1;
+          }
+        }
+        break;
+      case "s":
+        if (personaje.mover && pFil + 1 <= 10) {
+          if (mapa[pFil + 1][pCol] === 0) {
+            pFil += 1;
+          }
+        }
+        break;
+    }
+  }
 }
 
 function mostrarVidas() {

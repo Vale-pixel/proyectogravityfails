@@ -62,6 +62,7 @@ class Personaje {
     switch (key) {
       case "A":
         this.x -= 25;
+
         break;
       case "a":
         this.x -= 25;
