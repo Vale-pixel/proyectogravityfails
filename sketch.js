@@ -543,7 +543,6 @@ function draw() {
       textSize(36);
       text("5", 930, 98);
 
-      image(corazon, px, py); //corazon
       image(paginas, 924, 138); //paginas recolectadas
       image(cinta, 927, 205); //cinta del tiempo
 
@@ -592,17 +591,6 @@ function draw() {
             481
           );
         }
-      }
-      //adquirir vida
-      if (dist(personaje.x, personaje.y, 197, 314) < 20) {
-        recolectadaV2 = true;
-      }
-
-      if (recolectadaV2) {
-        personaje.vida += 1;
-
-        px = 1010;
-        py = 510;
       }
 
       break;
@@ -765,7 +753,7 @@ function keyPressed() {
 }
 
 function mostrarVidas() {
-  for (let i = 0; i < personaje.vida <= 6; i++) {
+  for (let i = 0; i < personaje.vida; i++) {
     let x1 = i * 76 + 40;
     let y1 = 40;
     // vida.push(new Vida(x, y));

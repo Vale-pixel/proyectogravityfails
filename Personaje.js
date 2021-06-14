@@ -8,8 +8,6 @@ class Personaje {
     this.enemigoB = [];
 
     this.vida = 4;
-
-    
   }
 
   mostrarTiostan() {
@@ -34,7 +32,6 @@ class Personaje {
       this.removerTiroInactivo();
       this.removerEnemigo();
     }
-   
   }
   disparar() {
     this.armaP.push(new ArmaP(this.x, this.y));
@@ -50,16 +47,14 @@ class Personaje {
   getTiroR() {
     return this.armaR;
   }
- 
 
   removerTiroInactivo() {
     for (let i = 0; i < this.armaP.lenght || this.armaR.length; i++) {
       if (!this.armaP[i].estaActivo() || !this.armaR[i].estaActivo()) {
         //remover
         this.armaP.splice(i, 1);
-         this.armaR.splice(i,1);
+        this.armaR.splice(i, 1);
         break;
-       
       }
     }
   }
@@ -123,7 +118,6 @@ class Personaje {
   bringEnemigoRosa() {
     this.enemigoB.push(new Rosa());
   }
-
 
   removerEnemigo() {
     for (let i = 0; i < this.enemigoB.lenght; i++) {
