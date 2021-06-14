@@ -17,7 +17,7 @@ class ArmaP {
 
   mover() {
     this.x++;
-    if (this.x > width) {
+    if (this.x > length) {
       this.activo = false;
     }
   }

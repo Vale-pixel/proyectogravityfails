@@ -42,14 +42,15 @@ let ratonI = new Raton(500, 50, 1);
 let murcieI = new Murcielago(500, 50, 1);
 let abuelaF = new AbuelaF(500, 50, 1);
 let abueloF = new AbueloF(500, 50, 1);
-let gnomoI = new Gnomo(271, 100, 1);
-let hombreTauroI = new HombreTauro(138, 100, 0);
+let gnomoI = new Gnomo(688, 100, 1);
+let hombreTauroI = new HombreTauro(813, 100, 0);
 let rosaI = new Rosa(500, 100, 1);
 let billI = new Bill(745, 100, 0);
 
 let libro = false;
 let recolectadoP = false;
 let recolectadaV = false;
+let recolectadaV2 = false;
 let recolectadaC = false;
 let tioStann = false;
 let mabell = false;
@@ -64,6 +65,8 @@ let dx = 855;
 let dy = 213;
 let sx = 480;
 let sy = 143;
+let px = 197;
+let py = 314;
 
 function preload() {
   //pantallas
@@ -179,7 +182,7 @@ function draw() {
         fill(255);
         textSize(20);
         text(
-          "Da click a las páginas para recolectarlas y pasar de nivel",
+          "Acercate a las páginas para recolectarlas y pasar de nivel",
           270,
           481
         );
@@ -220,6 +223,10 @@ function draw() {
       }
 
       //adquirir elementos
+
+      if (dist(personaje.x, personaje.y, 351, 244) < 20) {
+        recolectadoP = true;
+      }
       if (recolectadoP) {
         image(paginas, 907, 135);
         pantalla = 3;
@@ -255,9 +262,6 @@ function draw() {
     case 3:
       image(cuarto, 0, 0); //pantalla cuarto dipper y mabel
 
-      personaje.x = 50;
-      personaje.y = 337;
-
       fill(0);
       textSize(36);
       text("2", 930, 98); //numero de nivel en diario
@@ -291,7 +295,7 @@ function draw() {
         noStroke();
         fill(255);
         textSize(20);
-        text("Da click a la vida para recolectarla y pasar de nivel", 270, 481);
+        text("Acercate a la vida para recolectarla y pasar de nivel", 270, 481);
       }
 
       //cualidades murcielago
@@ -319,10 +323,14 @@ function draw() {
       }
 
       //adquirir elementos
+      if (dist(personaje.x, personaje.y, 861, 233) < 20) {
+        recolectadaV = true;
+      }
+
       if (recolectadaV) {
-        image(corazon, 910, 212);
         pantalla = 4;
         dx = 855;
+        personaje.vida += 1;
       }
 
       if (murcieI.verificarImpacto(personaje.x, personaje.y) && !logolpean) {
@@ -375,7 +383,7 @@ function draw() {
         fill(0);
         textSize(15);
         text(
-          "Da click a la cinta para recolectarla y pasar de nivel",
+          "Acercate a la cinta para recolectarla y pasar de nivel",
           352,
           481
         );
@@ -414,6 +422,9 @@ function draw() {
       }
 
       //adquirir elementos
+      if (dist(personaje.x, personaje.y, 485, 153) < 20) {
+        recolectadaC = true;
+      }
       if (recolectadaC) {
         image(cinta, 907, 180);
         pantalla = 5;
@@ -520,8 +531,7 @@ function draw() {
         }, 500);
       }
 
-      if (dist(personaje.x, personaje.y, 895, 200) < 50) {
-        console.log("hey");
+      if (dist(personaje.x, personaje.y, 55, 109) < 50) {
         pantalla = 6;
       }
 
@@ -533,6 +543,7 @@ function draw() {
       textSize(36);
       text("5", 930, 98);
 
+      image(corazon, px, py); //corazon
       image(paginas, 924, 138); //paginas recolectadas
       image(cinta, 927, 205); //cinta del tiempo
 
@@ -569,18 +580,29 @@ function draw() {
       if (libro) {
         noStroke();
         fill(255);
-        rect(218, 460, 600, 30);
+        rect(185, 460, 664, 30);
 
         stroke(15);
         fill(0);
         textSize(15);
         if (libro) {
           text(
-            "Llega a la cabaña del misterio ¡usa tus armas (z-x) para derrotar a los enemigos!",
+            "Cruza el bosque y evita las armas enemigas ¡usa tus armas (z-x) para derrotar a los enemigos!",
             200,
             481
           );
         }
+      }
+      //adquirir vida
+      if (dist(personaje.x, personaje.y, 197, 314) < 20) {
+        recolectadaV2 = true;
+      }
+
+      if (recolectadaV2) {
+        personaje.vida += 1;
+
+        px = 1010;
+        py = 510;
       }
 
       break;
@@ -723,15 +745,6 @@ function mousePressed() {
       break;
   }
 
-  //recoleccion de paginas nivel 1
-  if (mouseX > 367 && mouseX < 390 && mouseY > 210 && mouseY < 240) {
-    recolectadoP = true;
-  }
-  //recoleccion de vida nivel 2
-  if (mouseX > 867 && mouseX < 887 && mouseY > 234 && mouseY < 254) {
-    recolectadaV = true;
-    personaje.vida += 1;
-  }
   //mensaje de libro
   if (mouseX > 922 && mouseX < 959 && mouseY > 43 && mouseY < 120) {
     libro = !libro;
@@ -741,10 +754,6 @@ function mousePressed() {
     if (mouseX > 0 && mouseX < 1000 && mouseY > 0 && mouseY < 500) {
       presionado = true;
     }
-  }
-  //recoleccion de cinta
-  if (mouseX > 482 && mouseX < 500 && mouseY > 154 && mouseY < 170) {
-    recolectadaC = true;
   }
 
   console.log(mouseX, mouseY);
@@ -756,7 +765,7 @@ function keyPressed() {
 }
 
 function mostrarVidas() {
-  for (let i = 0; i < personaje.vida; i++) {
+  for (let i = 0; i < personaje.vida <= 6; i++) {
     let x1 = i * 76 + 40;
     let y1 = 40;
     // vida.push(new Vida(x, y));
