@@ -8,8 +8,6 @@ class Personaje {
     this.enemigo = [];
 
     this.vida = 4;
-
-   
   }
 
   mostrarTiostan() {
@@ -25,26 +23,6 @@ class Personaje {
   mostrarDipper() {
     image(dipper, this.x, this.y);
     this.arregloArma();
-  }
-
-  recolectarP() {
-    if (pantalla === 2) {
-      if (
-        mouseX > 992 &&
-        mouseX < 922 + 36 &&
-        mouseY > 43 &&
-        mouseY < 43 + 78
-      ) {
-        textSize(20);
-        fill(255);
-        text(
-          "Encuentra el elemento esencial para explorar el siguente nivel",
-          187,
-          481
-        );
-      }
-    }
-    return false;
   }
 
   arregloArma() {
@@ -84,7 +62,7 @@ class Personaje {
     switch (key) {
       case "A":
         this.x -= 25;
-        
+
         break;
       case "a":
         this.x -= 25;
@@ -110,8 +88,6 @@ class Personaje {
         break;
     }
   }
-
-
 
   dispararGeneral() {
     switch (key) {

@@ -1,74 +1,28 @@
-class EnemigoB{
-    constructor(){
-this.x = x;
-    this.y = y;
+class EnemigoB {
+  constructor(x, y, dir, vel) {
+    this.x = x;
+    this.y = 100;
     this.dir = dir;
-    this.randomX = 0;
-    this.randomDir = 0;
-    this. muerto = false;
-    }
+    this.vel = 5;
+    this.muerto = false;
+  }
 
-
-verificarImpactoE(x,y){
-    if(x > this.x && x <(this.x + 39) && y > this.y && y < this.y + 67){        
-        this.muerto = true; // muere cuando lo tocan
-        return true;
-    }
-    return false;
-
-
-
-}
-
-
-estaMuertoE(){
-    return this.muerto
-}
-
-
- especial(){
-    if (frameCount % 90 == 0) {
-        this.cambiarDeDireccion();
-        this.rebotar();
-}
-}
-cambiarDeDireccion(){
-    this.dir = int(random(4));
-}
-
-
-mover(){
-   
+  moverB() {
     switch (this.dir) {
-        case 0:// arriba
-            this.y-=2;
-            break;
-        case 1://abajo
-            this.y+=2;
-            break;
-        case 2://izquierda
-            this.x-=2;
-            break;
-        case 3://derecha
-            this.x+=2;
-            break;
+      case 0: // arriba
+        this.y -= this.vel;
+        break;
+      case 1: //abajo
+        this.y += this.vel;
+        break;
     }
-    
-this.especial();
-}
+  }
 
-rebotar(){
-    if(this.y>500){
-        this.dir = 0;
-    }else if(this.y<0){
-        this.dir = 1;
+  rebotarB() {
+    if (this.y > 350) {
+      this.dir = 0;
+    } else if (this.y < 50) {
+      this.dir = 1;
     }
-    if(this.x>990){
-        this.dir = 2;
-    }else if(this.x<0){
-        this.dir = 3;
-    }
-}
-
-
+  }
 }

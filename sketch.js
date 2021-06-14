@@ -39,6 +39,10 @@ let ratonI = new Raton(500, 50, 1);
 let murcieI = new Murcielago(500, 50, 1);
 let abuelaF = new AbuelaF(500, 50, 1);
 let abueloF = new AbueloF(500, 50, 1);
+let gnomoI = new Gnomo(689, 100, 1);
+let hombreTauroI = new HombreTauro(814, 100, 0);
+let rosaI = new Rosa(500, 100, 1);
+let billI = new Bill(745, 100, 0);
 
 let libro = false;
 let recolectadoP = false;
@@ -104,7 +108,6 @@ function preload() {
 
 function setup() {
   createCanvas(1000, 500);
-
   personaje = new Personaje();
   console.log(personaje);
 
@@ -123,7 +126,7 @@ function setup() {
     }
   }
   console.log(mapa);
-//fil= y, col= x
+  //fil= y, col= x
   mapa[1][2] = 1;
   mapa[9][5] = 1;
   mapa[9][6] = 1;
@@ -158,10 +161,10 @@ function draw() {
 
       fill(255);
       stroke(20); //intrucciones iniciales
-      textSize(19);
+      textSize(16);
       text(
-        "Da click sobre el diario del misterio en la esquina superior derecha en cada nivel para recibir las instrucciones",
-        32,
+        "Da doble click sobre el diario del misterio en la esquina superior derecha en cada nivel para recibir las instrucciones y borrarlas",
+        40,
         27
       );
 
@@ -203,6 +206,16 @@ function draw() {
       ratonI.mover();
       ratonI.rebotar();
 
+      //cualidades rosa
+      rosaI.mostrarB();
+      rosaI.moverB();
+      rosaI.rebotarB();
+
+      //cualidades bill
+      billI.mostrarB();
+      billI.moverB();
+      billI.rebotarB();
+
       //intrucciones del diario
       if (libro) {
         noStroke();
@@ -217,7 +230,7 @@ function draw() {
           noStroke();
           fill(0);
           textSize(13);
-          text("Da click de nuevo para eliminar el mensaje", 666, 481);
+          text("Prueba mover los objetos del cuarto con clicks ", 666, 481);
         } else {
         }
       }
@@ -298,7 +311,7 @@ function draw() {
           noStroke();
           fill(0);
           textSize(13);
-          text("Da click de nuevo para eliminar el mensaje", 666, 481);
+          text("Prueba mover los objetos del cuarto con clicks", 666, 481);
         } else {
         }
       }
@@ -328,6 +341,7 @@ function draw() {
       text("3", 935, 98);
 
       image(paginas, 922, 135); //paginas recolectadas
+      image(cinta, 371, 154); //cinta del tiempo
 
       //Pintar los personajes dependiendo la elección
 
@@ -347,7 +361,7 @@ function draw() {
       }
 
       mostrarVidas();
-/*
+      /*
       abuelaF.mostrar();
       abuelaF.mover();
       abuelaF.rebotar();
@@ -356,6 +370,25 @@ function draw() {
       abueloF.mover();
       abueloF.rebotar();
 */
+
+      //intrucciones del diario
+      if (libro) {
+        noStroke();
+        fill(255);
+        rect(218, 460, 600, 30);
+
+        stroke(15);
+        fill(0);
+        textSize(15);
+        if (libro) {
+          text(
+            "Recoge la cinta del tiempo para pasar de nivel ¡No dejes que los abuelos te toquen!",
+            239,
+            481
+          );
+        }
+      }
+
       //perder vida con contacto abuela
       if (abuelaF.verificarImpacto(personaje.x, personaje.y) && !logolpean) {
         logolpean = true;
@@ -419,6 +452,16 @@ function draw() {
         personaje.mostrarDipper();
       }
       mostrarVidas();
+
+      //cualidades gnomo
+      gnomoI.mostrarB();
+      gnomoI.moverB();
+      gnomoI.rebotarB();
+
+      //cualidades hombretauro
+      hombreTauroI.mostrarB();
+      hombreTauroI.moverB();
+      hombreTauroI.rebotarB();
       break;
 
     case 7:
@@ -556,69 +599,68 @@ function mouseClicked() {
 function keyPressed() {
   personaje.mover(); //movimiento personaje
   personaje.dispararGeneral(); //disparos de hacha y rayos z x
-if(pantalla === 4){
-  //fil-y=1   col-x=2
-  switch (key) {
-    case "A":
-      if(personaje.mover && pCol-1>=0) {
-        if(mapa[pFil][pCol-1] === 0){
-          pCol-=1;
+  if (pantalla === 4) {
+    //fil-y=1   col-x=2
+    switch (key) {
+      case "A":
+        if (personaje.mover && pCol - 1 >= 0) {
+          if (mapa[pFil][pCol - 1] === 0) {
+            pCol -= 1;
+          }
         }
-      }
-      break;
-    case "a":
-      if(personaje.mover && pCol-1>=0){
-        if(mapa[pFil][pCol-1] === 0){
-          pCol-=1;
+        break;
+      case "a":
+        if (personaje.mover && pCol - 1 >= 0) {
+          if (mapa[pFil][pCol - 1] === 0) {
+            pCol -= 1;
+          }
         }
-      }
-      break;
-    case "D":
-      if(personaje.mover && pCol+1<10){
-        if(mapa[pFil][pCol+1] === 0){
-          pCol+=1;
+        break;
+      case "D":
+        if (personaje.mover && pCol + 1 < 10) {
+          if (mapa[pFil][pCol + 1] === 0) {
+            pCol += 1;
+          }
         }
-      }
-      break;
-    case "d":
-      if(personaje.mover && pCol+1<10){
-        if(mapa[pFil][pCol+1] === 0){
-          pCol+=1;
+        break;
+      case "d":
+        if (personaje.mover && pCol + 1 < 10) {
+          if (mapa[pFil][pCol + 1] === 0) {
+            pCol += 1;
+          }
         }
-      }
-      break;
+        break;
 
-    case "W":
-      if(personaje.mover && pFil-1>=0){
-        if(mapa[pFil-1][pCol] === 0){
-          pFil-=1;
+      case "W":
+        if (personaje.mover && pFil - 1 >= 0) {
+          if (mapa[pFil - 1][pCol] === 0) {
+            pFil -= 1;
+          }
         }
-      }
-      break;
-    case "w":
-      if(personaje.mover && pFil-1>=0){
-        if(mapa[pFil-1][pCol] === 0){
-          pFil-=1;
+        break;
+      case "w":
+        if (personaje.mover && pFil - 1 >= 0) {
+          if (mapa[pFil - 1][pCol] === 0) {
+            pFil -= 1;
+          }
         }
-      }
-      break;
-    case "S":
-      if(personaje.mover && pFil+1<=10){
-        if(mapa[pFil+1][pCol] === 0){
-          pFil+=1;
+        break;
+      case "S":
+        if (personaje.mover && pFil + 1 <= 10) {
+          if (mapa[pFil + 1][pCol] === 0) {
+            pFil += 1;
+          }
         }
-      }
-      break;
-    case "s":
-      if(personaje.mover && pFil+1<=10){
-        if(mapa[pFil+1][pCol] === 0){
-          pFil+=1;
+        break;
+      case "s":
+        if (personaje.mover && pFil + 1 <= 10) {
+          if (mapa[pFil + 1][pCol] === 0) {
+            pFil += 1;
+          }
         }
-      }
-      break;
+        break;
+    }
   }
-  }
-
 }
 
 function mostrarVidas() {
