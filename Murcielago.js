@@ -1,11 +1,11 @@
 class Murcielago extends Enemigo {
-    constructor(x,y,dir,vel){
-        super(x,y,dir,vel)
-    }
-mostrar(){
+  constructor(x, y, dir, vel) {
+    super(x, y, dir, vel);
+  }
+  mostrar() {
     image(muercie, this.x, this.y);
-}
-verificarImpacto() {
+  }
+  verificarImpacto() {
     // además de marcarlo como muerto... retorna el valor para usarlo
     if (
       this.x > personaje.x &&
@@ -13,7 +13,6 @@ verificarImpacto() {
       this.y > personaje.y &&
       this.y < personaje.y + 200
     ) {
-      console.log("entro");
       this.muerto = true; // muere cuando lo tocan no?
       return true;
     }

@@ -1,18 +1,10 @@
 class Vida {
-    constructor(x,y){
+  constructor(x, y) {
     this.x = x;
     this.y = y;
-}
+  }
 
-mostrar(){
-    image(corazon,this.x,this.y);
-}
-
-pierdeVidas(){
-
-}
-
-reiniciaVidas(){
-    
-}
+  mostrar() {
+    image(corazon, this.x, this.y);
+  }
 }
