@@ -18,9 +18,10 @@ let inicial,
   abuelo,
   hombreTauro,
   gnomo,
+  hachader,
+  hachaizq,
   bill,
   rosa,
-  hacha,
   paginas,
   alfombra,
   cinta,
@@ -34,6 +35,7 @@ let vida = [];
 
 let personaje;
 let estantes;
+let enemigoB = [];
 
 let arma = new ArmaE();
 let ratonI = new Raton(500, 50, 1);
@@ -93,7 +95,8 @@ function preload() {
   rosa = loadImage("/assets/0rosa0.png");
 
   //elementos
-  hacha = loadImage("/assets/hacha.png");
+  hachader = loadImage("/assets/hachaDer.png");
+  hachader = loadImage("/assets/hachaIzq.png");
   paginas = loadImage("/assets/PaginasDelLibro-8.png");
   alfombra = loadImage("/assets/alfombra.png");
   cinta = loadImage("/assets/0cinta0.png");
@@ -109,6 +112,7 @@ function preload() {
 function setup() {
   createCanvas(1000, 500);
   personaje = new Personaje();
+  enemigoB = new EnemigoB();
 }
 
 function draw() {
@@ -239,6 +243,21 @@ function draw() {
           logolpean = false;
         }, 500);
       }
+
+      for (
+        let index = 0;
+        index < personaje.getTiro().length || personaje.getTiroR().length;
+        index++
+      ) {
+        let armaX = personaje.getTiro()[index].x; // obtenemosX
+        let armaY = personaje.getTiro()[index].y; // obtenemosY
+        if (enemigoB[i].verificarImpactoE(armaX, armaY)) {
+          // verificamos el contacto
+          enemigoB.splice(i, 1); // eliminamos
+          break; // finalizamos el ciclo
+        }
+      }
+
       break;
     case 3:
       image(cuarto, 0, 0); //pantalla cuarto dipper y mabel
