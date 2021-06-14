@@ -31,7 +31,6 @@ class Personaje {
       this.removerTiroInactivo();
       this.removerEnemigo();
     }
-    
   }
   disparar() {
     this.armaP.push(new ArmaP(this.x, this.y));
@@ -49,8 +48,8 @@ class Personaje {
   }
 
   removerTiroInactivo() {
-    for (let i = 0; i < this.armaP.lenght || this.armaR.length; i++) {
-      if (!this.armaP[i].estaActivo() || !this.armaR[i].estaActivo()) {
+    for (let i = 0; i < this.armaP.lenght && this.armaR.length; i++) {
+      if (!this.armaP[i].estaActivo() && !this.armaR[i].estaActivo()) {
         //remover
         break;
       }
@@ -91,22 +90,22 @@ class Personaje {
   dispararGeneral() {
     switch (key) {
       case "X":
-        if (pantalla === 6) {
+        if (pantalla === 6 && 7) {
           this.disparar();
         }
         break;
       case "x":
-        if (pantalla === 6) {
+        if (pantalla === 6 && 7) {
           this.disparar();
         }
         break;
       case "Z":
-        if (pantalla === 6) {
+        if (pantalla === 6 && 7) {
           this.dispararRayos();
         }
         break;
       case "z":
-        if (pantalla === 6) {
+        if (pantalla === 6 && 7) {
           this.dispararRayos();
         }
         break;

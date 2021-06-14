@@ -6,7 +6,7 @@ class ArmaP {
   }
 
   mostrar() {
-    image(hachaizq, this.x, this.y);
+    image(hachader, this.x, this.y);
     this.mover();
   }
 

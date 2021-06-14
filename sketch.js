@@ -30,7 +30,6 @@ let inicial,
   fuegorosa,
   corazon,
   linterna;
-  
 
 let vida = [];
 
@@ -45,8 +44,8 @@ let abuelaF = new AbuelaF(500, 50, 1);
 let abueloF = new AbueloF(500, 50, 1);
 let gnomoI = new Gnomo(688, 100, 1);
 let hombreTauroI = new HombreTauro(813, 100, 0);
-let rosaI = new Rosa(500, 100, 1);
-let billI = new Bill(745, 100, 0);
+let rosaI = new Rosa(230, 100, 1);
+let billI = new Bill(134, 100, 0);
 
 let libro = false;
 let recolectadoP = false;
@@ -59,7 +58,6 @@ let dipperr = false;
 let logolpean = false;
 let presionado = false;
 let armaP;
-
 
 let pantalla = 0;
 let x = 287;
@@ -237,8 +235,8 @@ function draw() {
           logolpean = false;
         }, 500);
       }
-      
-        /* let armaX = personaje.getTiro()[index].x; // obtenemosX
+
+      /* let armaX = personaje.getTiro()[index].x; // obtenemosX
         let armaY = personaje.getTiro()[index].y; // obtenemosY
         if (enemigoB[i].verificarImpactoE(armaX, armaY)) {
           // verificamos el contacto
@@ -565,6 +563,30 @@ function draw() {
       hombreTauroI.moverB();
       hombreTauroI.rebotarB();
 
+      //perder vida con contacto gnomo
+      if (gnomoI.verificarImpacto(personaje.x, personaje.y) && !logolpean) {
+        logolpean = true;
+        personaje.reducirVida();
+      }
+      if (logolpean) {
+        setTimeout(() => {
+          logolpean = false;
+        }, 500);
+      }
+      //perder vida con contacto hombretauro
+      if (
+        hombreTauroI.verificarImpacto(personaje.x, personaje.y) &&
+        !logolpean
+      ) {
+        logolpean = true;
+        personaje.reducirVida();
+      }
+      if (logolpean) {
+        setTimeout(() => {
+          logolpean = false;
+        }, 500);
+      }
+
       //intrucciones del diario
       if (libro) {
         noStroke();
@@ -575,18 +597,28 @@ function draw() {
         fill(0);
         textSize(15);
         if (libro) {
-          text("Elimina a tus enemigos ¡usa tus armas (z-x) !", 200, 481);
+          text(
+            "Elimina a tus enemigos y cruza el bosque ¡usa tus armas (z-x) !",
+            200,
+            481
+          );
         }
       }
 
-      
-
+      if (
+        personaje.x > 887 &&
+        personaje.x < 999 &&
+        personaje.y > 1 &&
+        personaje.y < 499
+      ) {
+        pantalla = 7;
+      }
 
       break;
 
     case 7:
       image(portal, 0, 0); //pantalla laboratorio y portal
-      personaje.mostrar();
+
       fill(0);
       textSize(36);
       text("6", 930, 98);
@@ -610,8 +642,38 @@ function draw() {
       if (dipperr === true) {
         personaje.mostrarDipper();
       }
-
       mostrarVidas();
+
+      //cualidades rosa
+      rosaI.mostrarB();
+      rosaI.moverB();
+      rosaI.rebotarB();
+
+      //cualidades bill
+      billI.mostrarB();
+      billI.moverB();
+      billI.rebotarB();
+
+      //perder vida con contacto gnomo
+      if (rosaI.verificarImpacto(personaje.x, personaje.y) && !logolpean) {
+        logolpean = true;
+        personaje.reducirVida();
+      }
+      if (logolpean) {
+        setTimeout(() => {
+          logolpean = false;
+        }, 500);
+      }
+      //perder vida con contacto hombretauro
+      if (billI.verificarImpacto(personaje.x, personaje.y) && !logolpean) {
+        logolpean = true;
+        personaje.reducirVida();
+      }
+      if (logolpean) {
+        setTimeout(() => {
+          logolpean = false;
+        }, 500);
+      }
 
       //intrucciones del diario
       if (libro) {
@@ -631,15 +693,14 @@ function draw() {
         }
       }
 
-      //cualidades rosa
-      rosaI.mostrarB();
-      rosaI.moverB();
-      rosaI.rebotarB();
-
-      //cualidades bill
-      billI.mostrarB();
-      billI.moverB();
-      billI.rebotarB();
+      if (
+        personaje.x > 1 &&
+        personaje.x < 71 &&
+        personaje.y > 1 &&
+        personaje.y < 499
+      ) {
+        pantalla = 9;
+      }
 
       break;
     case 8:

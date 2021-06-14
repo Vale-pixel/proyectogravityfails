@@ -3,7 +3,7 @@ class EnemigoB {
     this.x = x;
     this.y = 100;
     this.dir = dir;
-    this.vel = 5;
+    this.vel = 4;
     this.muerto = false;
   }
 
