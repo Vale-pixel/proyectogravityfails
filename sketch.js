@@ -236,16 +236,6 @@ function draw() {
         }, 500);
       }
 
-      /* let armaX = personaje.getTiro()[index].x; // obtenemosX
-        let armaY = personaje.getTiro()[index].y; // obtenemosY
-        if (enemigoB[i].verificarImpactoE(armaX, armaY)) {
-          // verificamos el contacto
-          console.log("moritegnomohp");
-          enemigoB.splice(i, 1); // eliminamos
-          break; // finalizamos el ciclo
-        }
-      }*/
-
       break;
     case 3:
       image(cuarto, 0, 0); //pantalla cuarto dipper y mabel
