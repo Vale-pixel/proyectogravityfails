@@ -11,6 +11,7 @@ let inicial,
   dipper,
   mabel,
   tiostan,
+  muro,
   raton,
   muercie,
   abuela,
@@ -39,34 +40,32 @@ let ratonI = new Raton(500, 50, 1);
 let murcieI = new Murcielago(500, 50, 1);
 let abuelaF = new AbuelaF(500, 50, 1);
 let abueloF = new AbueloF(500, 50, 1);
-let gnomoI = new Gnomo(689, 100, 1);
-let hombreTauroI = new HombreTauro(814, 100, 0);
+let gnomoI = new Gnomo(688, 100, 1);
+let hombreTauroI = new HombreTauro(813, 100, 0);
 let rosaI = new Rosa(500, 100, 1);
 let billI = new Bill(745, 100, 0);
 
 let libro = false;
 let recolectadoP = false;
 let recolectadaV = false;
+let recolectadaV2 = false;
+let recolectadaC = false;
 let tioStann = false;
 let mabell = false;
 let dipperr = false;
 let logolpean = false;
 let presionado = false;
 
-let pantalla = 4;
+let pantalla = 0;
 let x = 287;
 let y = 126;
 let dx = 855;
 let dy = 213;
-//definir arreglo para mapa
-let ArregloA = new Array(23);
-let ArregloB = new Array(48);
+let sx = 480;
+let sy = 143;
+let px = 197;
+let py = 314;
 
-//validar mapa en la matriz
-let pCol;
-let pFil;
-
-let mapa = [];
 function preload() {
   //pantallas
   inicial = loadImage("/assets/Pantalla inicial-8.png");
@@ -104,34 +103,12 @@ function preload() {
   corazon = loadImage("/assets/CorazónVida.png");
   linterna = loadImage("/assets/0linterna0.png");
   caja = loadImage("/assets/Cajita-8.png");
+  muro = loadImage("/assets/0muro0.png");
 }
 
 function setup() {
   createCanvas(1000, 500);
   personaje = new Personaje();
-  console.log(personaje);
-
-  //hacer arreglo de arreglos
-  for (let i = 0; i < 23; i++) {
-    mapa.push(new Array(23));
-  }
-  for (let i = 0; i < 48; i++) {
-    mapa.push(new Array(48));
-  }
-
-  //asignar valores iniciales
-  for (let fil = 0; fil < 23; fil++) {
-    for (let col = 0; col < 48; col++) {
-      mapa[fil][col] = 0;
-    }
-  }
-  console.log(mapa);
-  //fil= y, col= x
-  mapa[1][2] = 1;
-  mapa[9][5] = 1;
-  mapa[9][6] = 1;
-  mapa[9][7] = 1;
-  console.log(mapa);
 }
 
 function draw() {
@@ -139,19 +116,15 @@ function draw() {
     pantalla = 8;
   }
 
- if (presionado === true){
-   location.reload();
- }
-  
+  if (presionado === true) {
+    location.reload();
+  }
 
-  
-  
   //pantallas con sus elementos
   switch (pantalla) {
     case 0:
       image(inicial, 0, 0); //pantalla inicio
-      
-    
+
       break;
 
     case 1:
@@ -205,7 +178,7 @@ function draw() {
         fill(255);
         textSize(20);
         text(
-          "Da click a las páginas para recolectarlas y pasar de nivel",
+          "Acercate a las páginas para recolectarlas y pasar de nivel",
           270,
           481
         );
@@ -246,6 +219,10 @@ function draw() {
       }
 
       //adquirir elementos
+
+      if (dist(personaje.x, personaje.y, 351, 244) < 20) {
+        recolectadoP = true;
+      }
       if (recolectadoP) {
         image(paginas, 907, 135);
         pantalla = 3;
@@ -299,7 +276,7 @@ function draw() {
         noStroke();
         fill(255);
         textSize(20);
-        text("Da click a la vida para recolectarla y pasar de nivel", 270, 481);
+        text("Acercate a la vida para recolectarla y pasar de nivel", 270, 481);
       }
 
       //cualidades murcielago
@@ -327,10 +304,14 @@ function draw() {
       }
 
       //adquirir elementos
+      if (dist(personaje.x, personaje.y, 861, 233) < 20) {
+        recolectadaV = true;
+      }
+
       if (recolectadaV) {
-        image(corazon, 910, 212);
         pantalla = 4;
         dx = 855;
+        personaje.vida += 1;
       }
 
       if (murcieI.verificarImpacto(personaje.x, personaje.y) && !logolpean) {
@@ -351,7 +332,8 @@ function draw() {
       text("3", 935, 98);
 
       image(paginas, 922, 135); //paginas recolectadas
-      image(cinta, 371, 154); //cinta del tiempo
+      image(cinta, 482, 154); //cinta del tiempo
+      image(muro, sx, sy); //muro 1
 
       //Pintar los personajes dependiendo la elección
 
@@ -371,18 +353,9 @@ function draw() {
       }
 
       mostrarVidas();
-      /*
-      abuelaF.mostrar();
-      abuelaF.mover();
-      abuelaF.rebotar();
 
-      abueloF.mostrar();
-      abueloF.mover();
-      abueloF.rebotar();
-*/
-
-      //intrucciones del diario
-      if (libro) {
+      //muro y texto
+      if (sx === 535) {
         noStroke();
         fill(255);
         rect(218, 460, 600, 30);
@@ -390,13 +363,53 @@ function draw() {
         stroke(15);
         fill(0);
         textSize(15);
+        text(
+          "Acercate a la cinta para recolectarla y pasar de nivel",
+          352,
+          481
+        );
+      }
+
+      //cualidades abuelos
+      abuelaF.mostrar();
+      abuelaF.mover();
+      abuelaF.rebotar();
+
+      abueloF.mostrar();
+      abueloF.mover();
+      abueloF.rebotar();
+
+      //intrucciones del diario
+      if (libro) {
+        noStroke();
+        fill(255);
+        rect(60, 460, 900, 30);
+
+        stroke(15);
+        fill(0);
+        textSize(15);
         if (libro) {
           text(
-            "Recoge la cinta del tiempo para pasar de nivel ¡No dejes que los abuelos te toquen!",
-            239,
+            "Encuentra la cinta del tiempo para pasar de nivel ¡No dejes que los ratones te toquen!",
+            70,
             481
           );
+          noStroke();
+          fill(0);
+          textSize(13);
+          text("Prueba mover los objetos de la tienda con clicks ", 666, 481);
+        } else {
         }
+      }
+
+      //adquirir elementos
+      if (dist(personaje.x, personaje.y, 485, 153) < 20) {
+        recolectadaC = true;
+      }
+      if (recolectadaC) {
+        image(cinta, 907, 180);
+        pantalla = 5;
+        sx = 480;
       }
 
       //perder vida con contacto abuela
@@ -420,30 +433,17 @@ function draw() {
         }, 500);
       }
 
-      //pintar valores
-      for (let fil = 1; fil < 23; fil++) {
-        for (let col = 2; col < 48; col++) {
-          if (mapa[fil][col] === 0) {
-            noFill();
-          } else if (mapa[fil][col] == 1) {
-            fill(0);
-          }
-          stroke(0);
-          rect(col * 20, fil * 20, 20, 20);
-        }
-      }
-
       break;
 
     case 5:
-      break;
-
-    case 6:
-      image(bosque, 0, 0); //pantalla bosque
-      personaje.mostrar();
+      image(tienda, 0, 0); //pantalla tienda embrujada
       fill(0);
       textSize(36);
-      text("5", 930, 98);
+      text("4", 935, 98);
+
+      image(paginas, 924, 138); //paginas recolectadas
+      image(muro, sx, sy);
+      image(cinta, 927, 205); //cinta del tiempo
 
       //Pintar los personajes dependiendo la elección
 
@@ -461,6 +461,90 @@ function draw() {
       if (dipperr === true) {
         personaje.mostrarDipper();
       }
+
+      //cualidades abuelos
+      abuelaF.mostrar();
+      abuelaF.mover();
+      abuelaF.rebotar();
+
+      abueloF.mostrar();
+      abueloF.mover();
+      abueloF.rebotar();
+
+      //intrucciones del diario
+      if (libro) {
+        noStroke();
+        fill(255);
+        rect(252, 460, 570, 30);
+
+        stroke(15);
+        fill(0);
+        textSize(15);
+        if (libro) {
+          text(
+            "Llega atras del mostrador para pasar de nivel ¡No dejes que los abuelos te toquen!",
+            263,
+            481
+          );
+        }
+      }
+
+      mostrarVidas();
+
+      //perder vida con contacto abuela
+      if (abuelaF.verificarImpacto(personaje.x, personaje.y) && !logolpean) {
+        logolpean = true;
+        personaje.reducirVida();
+      }
+      if (logolpean) {
+        setTimeout(() => {
+          logolpean = false;
+        }, 500);
+      }
+      //perder vida con contacto abuelo
+      if (abueloF.verificarImpacto(personaje.x, personaje.y) && !logolpean) {
+        logolpean = true;
+        personaje.reducirVida();
+      }
+      if (logolpean) {
+        setTimeout(() => {
+          logolpean = false;
+        }, 500);
+      }
+
+      if (dist(personaje.x, personaje.y, 55, 109) < 50) {
+        pantalla = 6;
+      }
+
+      break;
+
+    case 6:
+      image(bosque, 0, 0); //pantalla bosque
+      fill(0);
+      textSize(36);
+      text("5", 930, 98);
+
+      image(corazon, px, py); //corazon
+      image(paginas, 924, 138); //paginas recolectadas
+      image(cinta, 927, 205); //cinta del tiempo
+
+      //Pintar los personajes dependiendo la elección
+
+      //Tio Stan
+      if (tioStann === true) {
+        personaje.mostrarTiostan();
+      }
+
+      //Mabel
+      if (mabell === true) {
+        personaje.mostrarMabel();
+      }
+
+      //Dipper
+      if (dipperr === true) {
+        personaje.mostrarDipper();
+      }
+
       mostrarVidas();
 
       //cualidades gnomo
@@ -472,6 +556,36 @@ function draw() {
       hombreTauroI.mostrarB();
       hombreTauroI.moverB();
       hombreTauroI.rebotarB();
+
+      //intrucciones del diario
+      if (libro) {
+        noStroke();
+        fill(255);
+        rect(185, 460, 664, 30);
+
+        stroke(15);
+        fill(0);
+        textSize(15);
+        if (libro) {
+          text(
+            "Cruza el bosque y evita las armas enemigas ¡usa tus armas (z-x) para derrotar a los enemigos!",
+            200,
+            481
+          );
+        }
+      }
+      //adquirir vida
+      if (dist(personaje.x, personaje.y, 197, 314) < 20) {
+        recolectadaV2 = true;
+      }
+
+      if (recolectadaV2) {
+        personaje.vida += 1;
+
+        px = 1010;
+        py = 510;
+      }
+
       break;
 
     case 7:
@@ -480,6 +594,9 @@ function draw() {
       fill(0);
       textSize(36);
       text("6", 930, 98);
+
+      image(paginas, 924, 138); //paginas recolectadas
+      image(cinta, 928, 199); //cinta del tiempo recolectada
 
       //Pintar los personajes dependiendo la elección
 
@@ -497,22 +614,36 @@ function draw() {
       if (dipperr === true) {
         personaje.mostrarDipper();
       }
+
       mostrarVidas();
+
+      //intrucciones del diario
+      if (libro) {
+        noStroke();
+        fill(255);
+        rect(218, 460, 600, 30);
+
+        stroke(15);
+        fill(0);
+        textSize(15);
+        if (libro) {
+          text(
+            "Llega hasta el ¡usa tus armas (z-x) para derrotar a los enemigos!",
+            200,
+            481
+          );
+        }
+      }
+
       break;
     case 8:
-
-     image(gameO, 0, 0); //Pantalla Game Over
-     
+      image(gameO, 0, 0); //Pantalla Game Over
 
       break;
 
     case 9:
       image(winner, 0, 0); //Pantalla ganador
       break;
-
-}
-
-
   }
 }
 
@@ -582,121 +713,40 @@ function mousePressed() {
       break;
 
     case 3:
-      //movimiento alfombra
+      //movimiento caja
       if (dist(mouseX, mouseY, dx + 70, dy + 70) < 90) {
         dx = 790;
       }
       break;
-        
+    case 4:
+      //movimiento muro 1
+      if (dist(mouseX, mouseY, sx + 40, sy + 40) < 60) {
+        sx = 535;
+      }
+      break;
   }
-  //recoleccion de paginas
-  if (mouseX > 367 && mouseX < 409 && mouseY > 210 && mouseY < 267) {
-    recolectadoP = true;
-  }
-  //recoleccion de vida
-  if (mouseX > 867 && mouseX < 903 && mouseY > 234 && mouseY < 271) {
-    recolectadaV = true;
-    personaje.vida += 1;
-  }
+
   //mensaje de libro
   if (mouseX > 922 && mouseX < 959 && mouseY > 43 && mouseY < 120) {
     libro = !libro;
   }
-
-
-if (pantalla === 8){
-  if (mouseX > 0 && mouseX < 1000 && mouseY > 0 && mouseY < 500) {
-    console.log("melo");
-    presionado = true;
+  //cambio de gamme over a pantalla inicial
+  if (pantalla === 8) {
+    if (mouseX > 0 && mouseX < 1000 && mouseY > 0 && mouseY < 500) {
+      presionado = true;
+    }
   }
-}
 
   console.log(mouseX, mouseY);
 }
-//cambio de gamme over a pantalla inicial
-
-function mouseClicked(){
-  
- }
-
-function mouseClicked() {
-  if (pantalla === 8) {
-    console.log("epa");
-    presionado = true;
-    pantalla = 2;
-  }
-}
-
 
 function keyPressed() {
   personaje.mover(); //movimiento personaje
   personaje.dispararGeneral(); //disparos de hacha y rayos z x
-  if (pantalla === 4) {
-    //fil-y=1   col-x=2
-    switch (key) {
-      case "A":
-        if (personaje.mover && pCol - 1 >= 0) {
-          if (mapa[pFil][pCol - 1] === 0) {
-            pCol -= 1;
-          }
-        }
-        break;
-      case "a":
-        if (personaje.mover && pCol - 1 >= 0) {
-          if (mapa[pFil][pCol - 1] === 0) {
-            pCol -= 1;
-          }
-        }
-        break;
-      case "D":
-        if (personaje.mover && pCol + 1 < 10) {
-          if (mapa[pFil][pCol + 1] === 0) {
-            pCol += 1;
-          }
-        }
-        break;
-      case "d":
-        if (personaje.mover && pCol + 1 < 10) {
-          if (mapa[pFil][pCol + 1] === 0) {
-            pCol += 1;
-          }
-        }
-        break;
-
-      case "W":
-        if (personaje.mover && pFil - 1 >= 0) {
-          if (mapa[pFil - 1][pCol] === 0) {
-            pFil -= 1;
-          }
-        }
-        break;
-      case "w":
-        if (personaje.mover && pFil - 1 >= 0) {
-          if (mapa[pFil - 1][pCol] === 0) {
-            pFil -= 1;
-          }
-        }
-        break;
-      case "S":
-        if (personaje.mover && pFil + 1 <= 10) {
-          if (mapa[pFil + 1][pCol] === 0) {
-            pFil += 1;
-          }
-        }
-        break;
-      case "s":
-        if (personaje.mover && pFil + 1 <= 10) {
-          if (mapa[pFil + 1][pCol] === 0) {
-            pFil += 1;
-          }
-        }
-        break;
-    }
-  }
 }
 
 function mostrarVidas() {
-  for (let i = 0; i < personaje.vida; i++) {
+  for (let i = 0; i < personaje.vida <= 6; i++) {
     let x1 = i * 76 + 40;
     let y1 = 40;
     // vida.push(new Vida(x, y));
