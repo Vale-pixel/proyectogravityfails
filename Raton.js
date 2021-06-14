@@ -1,11 +1,12 @@
 class Raton extends Enemigo {
-  constructor(x, y, dir) {
-    super(x, y, dir);
+  constructor(x, y, dir,vel) {
+    super(x, y, dir,vel);
   }
 
   mostrar() {
     image(raton, this.x, this.y);
   }
+  
   verificarImpacto() {
     // además de marcarlo como muerto... retorna el valor para usarlo
     if (
@@ -20,7 +21,6 @@ class Raton extends Enemigo {
     }
     return false;
   }
-
   estaMuerto() {
     return this.muerto;
   }
