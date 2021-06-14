@@ -30,6 +30,7 @@ let inicial,
   fuegorosa,
   corazon,
   linterna;
+  
 
 let vida = [];
 
@@ -57,6 +58,8 @@ let mabell = false;
 let dipperr = false;
 let logolpean = false;
 let presionado = false;
+let armaP;
+
 
 let pantalla = 0;
 let x = 287;
@@ -96,7 +99,7 @@ function preload() {
 
   //elementos
   hachader = loadImage("/assets/hachaDer.png");
-  hachader = loadImage("/assets/hachaIzq.png");
+  hachaizq = loadImage("/assets/hachaIzq.png");
   paginas = loadImage("/assets/PaginasDelLibro-8.png");
   alfombra = loadImage("/assets/alfombra.png");
   cinta = loadImage("/assets/0cinta0.png");
@@ -112,7 +115,8 @@ function preload() {
 function setup() {
   createCanvas(1000, 500);
   personaje = new Personaje();
-  enemigoB = new EnemigoB();
+  enemigoB = new Gnomo();
+  armaP = new ArmaP();
 }
 
 function draw() {
@@ -233,20 +237,16 @@ function draw() {
           logolpean = false;
         }, 500);
       }
-
-      for (
-        let index = 0;
-        index < personaje.getTiro().length || personaje.getTiroR().length;
-        index++
-      ) {
-        let armaX = personaje.getTiro()[index].x; // obtenemosX
+      
+        /* let armaX = personaje.getTiro()[index].x; // obtenemosX
         let armaY = personaje.getTiro()[index].y; // obtenemosY
         if (enemigoB[i].verificarImpactoE(armaX, armaY)) {
           // verificamos el contacto
+          console.log("moritegnomohp");
           enemigoB.splice(i, 1); // eliminamos
           break; // finalizamos el ciclo
         }
-      }
+      }*/
 
       break;
     case 3:
@@ -578,6 +578,9 @@ function draw() {
           text("Elimina a tus enemigos ¡usa tus armas (z-x) !", 200, 481);
         }
       }
+
+      
+
 
       break;
 

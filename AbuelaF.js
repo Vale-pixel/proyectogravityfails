@@ -11,6 +11,7 @@ class AbuelaF extends Enemigo {
   mostrar() {
     image(abuela, this.x, this.y);
   }
+
   verificarImpacto() {
     // además de marcarlo como muerto... retorna el valor para usarlo
     if (
@@ -22,10 +23,10 @@ class AbuelaF extends Enemigo {
       this.muerto = true; // muere cuando lo tocan no?
       return true;
     }
-    return false;
   }
 
   estaMuerto() {
     return this.muerto;
   }
 }
+
