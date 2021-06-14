@@ -6,7 +6,7 @@ class Raton extends Enemigo {
   mostrar() {
     image(raton, this.x, this.y);
   }
-  
+
   verificarImpacto() {
     // además de marcarlo como muerto... retorna el valor para usarlo
     if (

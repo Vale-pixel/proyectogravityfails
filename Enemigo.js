@@ -3,7 +3,7 @@ class Enemigo {
     this.x = x;
     this.y = y;
     this.dir = dir;
-    this.vel = 5;
+    this.vel = 6;
   }
   mover() {
     if (this.dir == 0) {
