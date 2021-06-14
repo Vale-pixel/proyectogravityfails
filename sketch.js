@@ -193,16 +193,6 @@ function draw() {
       ratonI.mover();
       ratonI.rebotar();
 
-      //cualidades rosa
-      rosaI.mostrarB();
-      rosaI.moverB();
-      rosaI.rebotarB();
-
-      //cualidades bill
-      billI.mostrarB();
-      billI.moverB();
-      billI.rebotarB();
-
       //intrucciones del diario
       if (libro) {
         noStroke();
@@ -585,11 +575,7 @@ function draw() {
         fill(0);
         textSize(15);
         if (libro) {
-          text(
-            "Cruza el bosque y evita las armas enemigas ¡usa tus armas (z-x) para derrotar a los enemigos!",
-            200,
-            481
-          );
+          text("Elimina a tus enemigos ¡usa tus armas (z-x) !", 200, 481);
         }
       }
 
@@ -641,6 +627,16 @@ function draw() {
           );
         }
       }
+
+      //cualidades rosa
+      rosaI.mostrarB();
+      rosaI.moverB();
+      rosaI.rebotarB();
+
+      //cualidades bill
+      billI.mostrarB();
+      billI.moverB();
+      billI.rebotarB();
 
       break;
     case 8:
