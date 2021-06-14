@@ -8,15 +8,6 @@ this.x = x;
     this. muerto = false;
     }
 
-    
-    
-
-
-raton(){
-    
-    image(raton,this.x,this.y);
-    this.especial();
-}
 
 verificarImpactoE(x,y){
     if(x > this.x && x <(this.x + 39) && y > this.y && y < this.y + 67){        
