@@ -25,4 +25,16 @@ class EnemigoB {
       this.dir = 1;
     }
   }
+
+  verificarImpactoE(x, y) {
+    if (x > this.x && x < this.x + 78 && y > this.y && y < this.y + 117) {
+      this.muerto = true; // muere cuando lo tocan
+      return true;
+    }
+    return false;
+  }
+
+  estaMuerto() {
+    return this.muerto;
+  }
 }

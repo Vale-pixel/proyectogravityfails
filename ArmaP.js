@@ -6,18 +6,18 @@ class ArmaP {
   }
 
   mostrar() {
-    image(hacha, this.x, this.y);
+    image(hachaizq, this.x, this.y);
     this.mover();
   }
 
   mostrarRayos() {
-    rect(this.x + 3, this.y - 3, 3, 8);
+    rect(this.x + 55, this.y + 60, 8, 3);
     this.mover();
   }
 
   mover() {
-    this.x--;
-    if (this.x > length) {
+    this.x++;
+    if (this.x > width) {
       this.activo = false;
     }
   }
