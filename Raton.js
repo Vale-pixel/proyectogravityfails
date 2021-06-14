@@ -1,6 +1,6 @@
 class Raton extends Enemigo {
-  constructor(x, y, dir,vel) {
-    super(x, y, dir,vel);
+  constructor(x, y, dir, vel) {
+    super(x, y, dir, vel);
   }
 
   mostrar() {
@@ -15,7 +15,6 @@ class Raton extends Enemigo {
       this.y > personaje.y &&
       this.y < personaje.y + 117
     ) {
-      console.log("entro");
       this.muerto = true; // muere cuando lo tocan no?
       return true;
     }
