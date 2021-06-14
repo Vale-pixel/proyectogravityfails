@@ -40,8 +40,8 @@ let ratonI = new Raton(500, 50, 1);
 let murcieI = new Murcielago(500, 50, 1);
 let abuelaF = new AbuelaF(500, 50, 1);
 let abueloF = new AbueloF(500, 50, 1);
-let gnomoI = new Gnomo(689, 100, 1);
-let hombreTauroI = new HombreTauro(814, 100, 0);
+let gnomoI = new Gnomo(271, 100, 1);
+let hombreTauroI = new HombreTauro(138, 100, 0);
 let rosaI = new Rosa(500, 100, 1);
 let billI = new Bill(745, 100, 0);
 
@@ -235,6 +235,9 @@ function draw() {
       break;
     case 3:
       image(cuarto, 0, 0); //pantalla cuarto dipper y mabel
+
+      personaje.x = 50;
+      personaje.y = 337;
 
       fill(0);
       textSize(36);
@@ -498,21 +501,15 @@ function draw() {
         }, 500);
       }
 
-      //pasar nivel 5
-      if (
-        personaje.x > 895 &&
-        personaje.x < 952 &&
-        personaje.y < 149 &&
-        personaje.y > 263
-      ) {
-        console.log(hey);
+      if (dist(personaje.x, personaje.y, 895, 200) < 50) {
+        console.log("hey");
         pantalla = 6;
       }
+
       break;
 
     case 6:
       image(bosque, 0, 0); //pantalla bosque
-      personaje.mostrar();
       fill(0);
       textSize(36);
       text("5", 930, 98);
@@ -536,6 +533,7 @@ function draw() {
       if (dipperr === true) {
         personaje.mostrarDipper();
       }
+
       mostrarVidas();
 
       //cualidades gnomo
@@ -594,6 +592,7 @@ function draw() {
       if (dipperr === true) {
         personaje.mostrarDipper();
       }
+
       mostrarVidas();
 
       //intrucciones del diario
