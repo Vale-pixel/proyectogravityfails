@@ -1,11 +1,9 @@
 class Enemigo {
-  constructor(x, y, dir) {
+  constructor(x, y, dir,vel) {
     this.x = x;
     this.y = y;
     this.dir = dir;
-    this.vel = 5;
-    this.randomX = 0;
-    this.randomDir = 0;
+    this.vel = 6;
   }
   mover() {
     if (this.dir == 0) {
@@ -59,8 +57,4 @@ class Enemigo {
     }
   }
  
-
-
-
-
 }

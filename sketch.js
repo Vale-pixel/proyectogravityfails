@@ -29,16 +29,16 @@ let inicial,
   corazon,
   linterna;
 
-let pantalla = 0;
-let presionado = false;
+let vida = [];
+
 let personaje;
 let estantes;
 
+let arma = new ArmaE();
 let ratonI = new Raton(500, 50, 1);
 let murcieI = new Murcielago(500, 50, 1);
-let arma = new ArmaE();
-
-let vida = [];
+let abuelaF = new AbuelaF(500, 50, 1);
+let abueloF = new AbueloF(500, 50, 1);
 
 let libro = false;
 let recolectadoP = false;
@@ -46,13 +46,15 @@ let recolectadaV = false;
 let tioStann = false;
 let mabell = false;
 let dipperr = false;
+let logolpean = false;
+let presionado = false;
 
+let pantalla = 0;
 let x = 287;
 let y = 126;
-
 let dx = 855;
 let dy = 213;
-let logolpean = false;
+
 
 function preload() {
   //pantallas
@@ -199,10 +201,11 @@ function draw() {
         x = 287;
       }
 
+      
+      //perder vida con contacto enemigo
       if (ratonI.verificarImpacto(personaje.x, personaje.y) && !logolpean) {
         logolpean = true;
         personaje.reducirVida();
-        console.log("aja");
       }
       if (logolpean) {
         setTimeout(() => {
@@ -280,6 +283,16 @@ function draw() {
         dx = 855;
       }
 
+      if (murcieI.verificarImpacto(personaje.x, personaje.y) && !logolpean) {
+        logolpean = true;
+        personaje.reducirVida();
+      }
+      if (logolpean) {
+        setTimeout(() => {
+          logolpean = false;
+        }, 500);
+      }
+
       break;
     case 4:
       image(tienda, 0, 0); //pantalla tienda embrujada
@@ -287,7 +300,6 @@ function draw() {
       textSize(36);
       text("3", 935, 98);
 
-      image(corazon, 918, 212); //corazon recolectado
       image(paginas, 922, 135); //paginas recolectadas
 
       //Pintar los personajes dependiendo la elección
@@ -309,6 +321,34 @@ function draw() {
 
       mostrarVidas();
 
+      abuelaF.mostrar();
+      abuelaF.mover();
+      abuelaF.rebotar();
+
+      abueloF.mostrar();
+      abueloF.mover();
+      abueloF.rebotar();
+
+      //perder vida con contacto abuela
+      if (abuelaF.verificarImpacto(personaje.x, personaje.y) && !logolpean) {
+        logolpean = true;
+        personaje.reducirVida();
+      }
+      if (logolpean) {
+        setTimeout(() => {
+          logolpean = false;
+        }, 500);
+      }
+//perder vida con contacto abuelo
+      if (abueloF.verificarImpacto(personaje.x, personaje.y) && !logolpean) {
+        logolpean = true;
+        personaje.reducirVida();
+      }
+      if (logolpean) {
+        setTimeout(() => {
+          logolpean = false;
+        }, 500);
+      }
       break;
 
     case 5:
@@ -366,13 +406,15 @@ function draw() {
       mostrarVidas();
       break;
     case 8:
-      image(gameO, 0, 0); //Pantalla Game Over
+     image(gameO, 0, 0); //Pantalla Game Over
       break;
-    case 8:
+
+     case 9:
       image(winner, 0, 0); //Pantalla ganador
       break;
-  }
 }
+  }
+
 
 function mousePressed() {
   //cambio de pantalla
@@ -450,16 +492,25 @@ function mousePressed() {
   if (mouseX > 367 && mouseX < 409 && mouseY > 210 && mouseY < 267) {
     recolectadoP = true;
   }
+  //recoleccion de vida
   if (mouseX > 867 && mouseX < 903 && mouseY > 234 && mouseY < 271) {
     recolectadaV = true;
     personaje.vida += 1;
   }
+  //mensaje de libro
   if (mouseX > 922 && mouseX < 959 && mouseY > 43 && mouseY < 120) {
     libro = !libro;
   }
 
   console.log(mouseX, mouseY);
 }
+//cambio de gamme over a pantalla inicial
+function mouseClicked(){
+  if(pantalla===8){
+    console.log("epa");
+    presionado=true;
+    pantalla=2;
+}}
 
 function keyPressed() {
   personaje.mover(); //movimiento personaje
