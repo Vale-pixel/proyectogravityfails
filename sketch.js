@@ -323,7 +323,7 @@ function draw() {
       }
 
       //adquirir elementos
-      if (dist(personaje.x, personaje.y, 861, 233) < 20) {
+      if (dist(personaje.x, personaje.y, 861, 233) < 30) {
         recolectadaV = true;
       }
 
@@ -409,7 +409,7 @@ function draw() {
         textSize(15);
         if (libro) {
           text(
-            "Encuentra la cinta del tiempo para pasar de nivel ¡No dejes que los ratones te toquen!",
+            "Encuentra la cinta del tiempo para pasar de nivel ¡No dejes que los abuelos te toquen!",
             70,
             481
           );
@@ -422,7 +422,7 @@ function draw() {
       }
 
       //adquirir elementos
-      if (dist(personaje.x, personaje.y, 485, 153) < 20) {
+      if (dist(personaje.x, personaje.y, 485, 153) < 30) {
         recolectadaC = true;
       }
       if (recolectadaC) {
@@ -638,7 +638,7 @@ function draw() {
         textSize(15);
         if (libro) {
           text(
-            "Llega hasta el ¡usa tus armas (z-x) para derrotar a los enemigos!",
+            "Llega hasta el portal ¡usa tus armas (z-x) para derrotar a los enemigos!",
             200,
             481
           );

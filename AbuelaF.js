@@ -29,3 +29,4 @@ class AbuelaF extends Enemigo {
     return this.muerto;
   }
 }
+}
