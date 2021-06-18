@@ -44,8 +44,8 @@ let abuelaF = new AbuelaF(500, 50, 1);
 let abueloF = new AbueloF(500, 50, 1);
 let gnomoI = new Gnomo(688, 100, 1);
 let hombreTauroI = new HombreTauro(813, 100, 0);
-let rosaI = new Rosa(500, 100, 1);
-let billI = new Bill(745, 100, 0);
+let rosaI = new Rosa(230, 100, 1);
+let billI = new Bill(134, 100, 0);
 
 let libro = false;
 let recolectadoP = false;
@@ -57,6 +57,7 @@ let mabell = false;
 let dipperr = false;
 let logolpean = false;
 let presionado = false;
+let armaP;
 
 let pantalla = 0;
 let x = 287;
@@ -96,7 +97,7 @@ function preload() {
 
   //elementos
   hachader = loadImage("/assets/hachaDer.png");
-  hachader = loadImage("/assets/hachaIzq.png");
+  hachaizq = loadImage("/assets/hachaIzq.png");
   paginas = loadImage("/assets/PaginasDelLibro-8.png");
   alfombra = loadImage("/assets/alfombra.png");
   cinta = loadImage("/assets/0cinta0.png");
@@ -112,7 +113,8 @@ function preload() {
 function setup() {
   createCanvas(1000, 500);
   personaje = new Personaje();
-  enemigoB = new EnemigoB();
+  enemigoB = new Gnomo();
+  armaP = new ArmaP();
 }
 
 function draw() {
@@ -193,16 +195,6 @@ function draw() {
       ratonI.mover();
       ratonI.rebotar();
 
-      //cualidades rosa
-      rosaI.mostrarB();
-      rosaI.moverB();
-      rosaI.rebotarB();
-
-      //cualidades bill
-      billI.mostrarB();
-      billI.moverB();
-      billI.rebotarB();
-
       //intrucciones del diario
       if (libro) {
         noStroke();
@@ -242,20 +234,6 @@ function draw() {
         setTimeout(() => {
           logolpean = false;
         }, 500);
-      }
-
-      for (
-        let index = 0;
-        index < personaje.getTiro().length || personaje.getTiroR().length;
-        index++
-      ) {
-        let armaX = personaje.getTiro()[index].x; // obtenemosX
-        let armaY = personaje.getTiro()[index].y; // obtenemosY
-        if (enemigoB[i].verificarImpactoE(armaX, armaY)) {
-          // verificamos el contacto
-          enemigoB.splice(i, 1); // eliminamos
-          break; // finalizamos el ciclo
-        }
       }
 
       break;
@@ -323,7 +301,7 @@ function draw() {
       }
 
       //adquirir elementos
-      if (dist(personaje.x, personaje.y, 861, 233) < 20) {
+      if (dist(personaje.x, personaje.y, 861, 233) < 30) {
         recolectadaV = true;
       }
 
@@ -409,7 +387,7 @@ function draw() {
         textSize(15);
         if (libro) {
           text(
-            "Encuentra la cinta del tiempo para pasar de nivel ¡No dejes que los ratones te toquen!",
+            "Encuentra la cinta del tiempo para pasar de nivel ¡No dejes que los abuelos te toquen!",
             70,
             481
           );
@@ -422,7 +400,7 @@ function draw() {
       }
 
       //adquirir elementos
-      if (dist(personaje.x, personaje.y, 485, 153) < 20) {
+      if (dist(personaje.x, personaje.y, 485, 153) < 30) {
         recolectadaC = true;
       }
       if (recolectadaC) {
@@ -575,6 +553,30 @@ function draw() {
       hombreTauroI.moverB();
       hombreTauroI.rebotarB();
 
+      //perder vida con contacto gnomo
+      if (gnomoI.verificarImpacto(personaje.x, personaje.y) && !logolpean) {
+        logolpean = true;
+        personaje.reducirVida();
+      }
+      if (logolpean) {
+        setTimeout(() => {
+          logolpean = false;
+        }, 500);
+      }
+      //perder vida con contacto hombretauro
+      if (
+        hombreTauroI.verificarImpacto(personaje.x, personaje.y) &&
+        !logolpean
+      ) {
+        logolpean = true;
+        personaje.reducirVida();
+      }
+      if (logolpean) {
+        setTimeout(() => {
+          logolpean = false;
+        }, 500);
+      }
+
       //intrucciones del diario
       if (libro) {
         noStroke();
@@ -586,18 +588,27 @@ function draw() {
         textSize(15);
         if (libro) {
           text(
-            "Cruza el bosque y evita las armas enemigas ¡usa tus armas (z-x) para derrotar a los enemigos!",
+            "Elimina a tus enemigos y cruza el bosque ¡usa tus armas (z-x) !",
             200,
             481
           );
         }
       }
 
+      if (
+        personaje.x > 887 &&
+        personaje.x < 999 &&
+        personaje.y > 1 &&
+        personaje.y < 499
+      ) {
+        pantalla = 7;
+      }
+
       break;
 
     case 7:
       image(portal, 0, 0); //pantalla laboratorio y portal
-      personaje.mostrar();
+
       fill(0);
       textSize(36);
       text("6", 930, 98);
@@ -621,8 +632,38 @@ function draw() {
       if (dipperr === true) {
         personaje.mostrarDipper();
       }
-
       mostrarVidas();
+
+      //cualidades rosa
+      rosaI.mostrarB();
+      rosaI.moverB();
+      rosaI.rebotarB();
+
+      //cualidades bill
+      billI.mostrarB();
+      billI.moverB();
+      billI.rebotarB();
+
+      //perder vida con contacto gnomo
+      if (rosaI.verificarImpacto(personaje.x, personaje.y) && !logolpean) {
+        logolpean = true;
+        personaje.reducirVida();
+      }
+      if (logolpean) {
+        setTimeout(() => {
+          logolpean = false;
+        }, 500);
+      }
+      //perder vida con contacto hombretauro
+      if (billI.verificarImpacto(personaje.x, personaje.y) && !logolpean) {
+        logolpean = true;
+        personaje.reducirVida();
+      }
+      if (logolpean) {
+        setTimeout(() => {
+          logolpean = false;
+        }, 500);
+      }
 
       //intrucciones del diario
       if (libro) {
@@ -635,11 +676,20 @@ function draw() {
         textSize(15);
         if (libro) {
           text(
-            "Llega hasta el ¡usa tus armas (z-x) para derrotar a los enemigos!",
+            "Llega hasta el portal ¡usa tus armas (z-x) para derrotar a los enemigos!",
             200,
             481
           );
         }
+      }
+
+      if (
+        personaje.x > 1 &&
+        personaje.x < 71 &&
+        personaje.y > 1 &&
+        personaje.y < 499
+      ) {
+        pantalla = 9;
       }
 
       break;
